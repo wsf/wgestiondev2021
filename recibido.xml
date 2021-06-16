@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FECAEResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FeCabResp xmlns="http://ar.gov.afip.dif.FEV1/">
+    <Cuit>20061346326</Cuit>
+    <PtoVta>3</PtoVta>
+    <CbteTipo>6</CbteTipo>
+    <FchProceso>20151130171512</FchProceso>
+    <CantReg>1</CantReg>
+    <Resultado>R</Resultado>
+    <Reproceso>N</Reproceso>
+  </FeCabResp>
+  <FeDetResp xmlns="http://ar.gov.afip.dif.FEV1/">
+    <FECAEDetResponse>
+      <Concepto>1</Concepto>
+      <DocTipo>80</DocTipo>
+      <DocNro>27321312301</DocNro>
+      <CbteDesde>2038</CbteDesde>
+      <CbteHasta>2038</CbteHasta>
+      <CbteFch>20151130</CbteFch>
+      <Resultado>R</Resultado>
+      <CAE />
+      <CAEFchVto />
+    </FECAEDetResponse>
+  </FeDetResp>
+  <Errors xmlns="http://ar.gov.afip.dif.FEV1/">
+    <Err>
+      <Code>10016</Code>
+      <Msg>El nÃºmero o fecha del comprobante no se corresponde con el prÃ³ximo a autorizar. Consultar metodo FECompUltimoAutorizado.</Msg>
+    </Err>
+  </Errors>
+</FECAEResponse>

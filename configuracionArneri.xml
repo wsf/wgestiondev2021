@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Configuracion>
+	<Sistema>WGestion</Sistema>
+	<Titulo>Programa de Gestion Comercial a medida para :</Titulo>
+	<UServidor>MySQL</UServidor>
+	<UUsuario>Admin</UUsuario>
+	<UEmpresa>Wgestion</UEmpresa>
+	<Password>wsf</Password>
+	<Login>Auto</Login>
+	<Demo>False</Demo>
+	<TipoVersion>VERSION 2010</TipoVersion>
+	<IncluyeContabilidad>True</IncluyeContabilidad>
+	<IncluyeStac>False</IncluyeStac>
+	<IncluyeResto>False</IncluyeResto>
+	<IncluyeTicket>False</IncluyeTicket>
+	<IncluyeCobros>True</IncluyeCobros>
+	<Impresora>Hasar</Impresora>
+	<ImprimirReciboCliente>False</ImprimirReciboCliente>
+	<ImprimirReciboProveedor>False</ImprimirReciboProveedor>
+	<TipoDeRemitoInicialVenta>Otros</TipoDeRemitoInicialVenta>
+	<TipoDeRemitoInicialCompra></TipoDeRemitoInicialCompra>
+	<TamanoIconosMenuPrincipal>24</TamanoIconosMenuPrincipal>
+	<UnidadExternaBackup>H</UnidadExternaBackup>
+	<TipoListadoIvaVenta>PorFecha</TipoListadoIvaVenta>
+	<TipoListadoIvaCompra>PorFecha</TipoListadoIvaCompra>
+	<CargarDocumentosEnCobros>False</CargarDocumentosEnCobros>
+	<CargarDocumentosEnPagos>False</CargarDocumentosEnPagos>
+	<MantenerClienteEnVentas>True</MantenerClienteEnVentas>
+	<MantenerProveedorEnCompras>True</MantenerProveedorEnCompras>
+	<Remito>Factura</Remito>
+	<AsientosAutomaticos>False</AsientosAutomaticos>
+</Configuracion>
+

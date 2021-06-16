@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<Configuracion>
+	<Sistema>WGestion</Sistema>
+	<Titulo>Programa de Gestion Comercial a medida para :</Titulo>
+	<UServidor>MySQL</UServidor>
+	<UUsuario>Admin</UUsuario>
+	<UEmpresa>wgestionadba</UEmpresa>
+	<Password>wsf</Password>
+	<Login>Auto</Login>
+	<Demo>False</Demo>
+	<TipoVersion>VERSION 2010</TipoVersion>
+	<IncluyeContabilidad>False</IncluyeContabilidad>
+	<IncluyeStac>False</IncluyeStac>
+	<IncluyeResto>False</IncluyeResto>
+	<IncluyeTicket>False</IncluyeTicket>
+	<IncluyeCobros>False</IncluyeCobros>
+	<Impresora>No Fiscal</Impresora>
+	<ImprimirReciboCliente>True</ImprimirReciboCliente>
+	<ImprimirReciboProveedor>True</ImprimirReciboProveedor>
+	<TipoDeRemitoInicialVenta>Documento</TipoDeRemitoInicialVenta>
+	<TipoDeRemitoInicialCompra></TipoDeRemitoInicialCompra>
+	<TamanoIconosMenuPrincipal>24</TamanoIconosMenuPrincipal>
+	<UnidadExternaBackup>H</UnidadExternaBackup>
+	<TipoListadoIvaVenta>PorFecha</TipoListadoIvaVenta>
+	<TipoListadoIvaCompra>PorFecha</TipoListadoIvaCompra>
+	<CargarDocumentosEnCobros>False</CargarDocumentosEnCobros>
+	<CargarDocumentosEnPagos>False</CargarDocumentosEnPagos>
+	<MantenerClienteEnVentas>True</MantenerClienteEnVentas>
+	<MantenerProveedorEnCompras>True</MantenerProveedorEnCompras>
+	<Remito>Factura</Remito>
+	<AsientosAutomaticos>False</AsientosAutomaticos>
+	<TipoCliente>Volquete</TipoCliente>
+	<ComunaCnn>driver={MySQL ODBC 3.51 Driver};server=localhost;port=3306;uid=root;pwd=dalas.2009;database=comunadb;OPTION=8</ComunaCnn>
+	<Puesto>Tunina</Puesto>
+	<Perfil2>Caja2</Perfil2>
+	<Debug>False</Debug>
+	<Cliente>Tunina</Cliente>	
+	<p1>CARLETI</p1>
+	<ObtieneCAE>SI</ObtieneCAE>
+	<vcuit>20165200927</vcuit>
+	<vcertificado>Fernando.pfx</vcertificado>
+	<modoFiscal>1</modoFiscal>
+	<TipoDocumento_CUIT>80</TipoDocumento_CUIT>
+	<FEDetalleFecha_serv_desde>20150701</FEDetalleFecha_serv_desde>
+	<FEDetalleFecha_serv_hasta>20150801</FEDetalleFecha_serv_hasta>
+	<PuedeBorrar>SI</PuedeBorrar>
+	<LicenciaWSAFIP>Fernando.lic</LicenciaWSAFIP>
+	<IB></IB>
+	<IBFecha></IBFecha>
+	<CUIT>20165200927</CUIT>
+	<BuscarporCod>SI</BuscarporCod>
+	<logo>NO</logo>
+
+</Configuracion>
