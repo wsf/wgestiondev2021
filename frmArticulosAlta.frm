@@ -5,7 +5,7 @@ Object = "{52463EDA-D668-43B6-8D47-4FA8035EF04A}#1.0#0"; "PhotoWSF.ocx"
 Object = "{50BF2256-701F-46F2-8ADB-2202CE6922BC}#1.0#0"; "Copia de KlexGrid.ocx"
 Begin VB.Form frmArticulosAlta 
    BorderStyle     =   1  'Fixed Single
-   ClientHeight    =   6585
+   ClientHeight    =   7770
    ClientLeft      =   45
    ClientTop       =   360
    ClientWidth     =   9390
@@ -13,11 +13,11 @@ Begin VB.Form frmArticulosAlta
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   6585
+   ScaleHeight     =   7770
    ScaleWidth      =   9390
    Begin XtremeSuiteControls.FlatEdit pventa1 
       Height          =   330
-      Left            =   7965
+      Left            =   7950
       TabIndex        =   97
       Top             =   3420
       Width           =   1185
@@ -25,8 +25,9 @@ Begin VB.Form frmArticulosAlta
       _ExtentX        =   2090
       _ExtentY        =   582
       _StockProps     =   77
-      BackColor       =   12632256
-      BackColor       =   12632256
+      BackColor       =   14737632
+      Text            =   "40"
+      BackColor       =   14737632
    End
    Begin XtremeSuiteControls.PushButton pbCarga 
       Height          =   315
@@ -70,19 +71,19 @@ Begin VB.Form frmArticulosAlta
       BackColor       =   -2147483643
    End
    Begin XtremeSuiteControls.TabControl TabAlta 
-      Height          =   4155
+      Height          =   5355
       Left            =   120
       TabIndex        =   18
       Top             =   1890
       Width           =   9135
       _Version        =   851968
       _ExtentX        =   16113
-      _ExtentY        =   7320
+      _ExtentY        =   9446
       _StockProps     =   68
       Color           =   8
       ItemCount       =   5
       Item(0).Caption =   "Ficha"
-      Item(0).ControlCount=   43
+      Item(0).ControlCount=   44
       Item(0).Control(0)=   "lblFicha(1)"
       Item(0).Control(1)=   "lblFicha(2)"
       Item(0).Control(2)=   "txtFicha(2)"
@@ -126,6 +127,7 @@ Begin VB.Form frmArticulosAlta
       Item(0).Control(40)=   "lblAumentarStock"
       Item(0).Control(41)=   "lblStockActual"
       Item(0).Control(42)=   "PusCambiarStock"
+      Item(0).Control(43)=   "lblAumento"
       Item(1).Caption =   "Técnica"
       Item(1).ControlCount=   21
       Item(1).Control(0)=   "dtpFecha(0)"
@@ -291,13 +293,13 @@ Begin VB.Form frmArticulosAlta
          Rows            =   10
       End
       Begin Grid.KlexGrid klexPrecios 
-         Height          =   555
+         Height          =   1815
          Left            =   120
          TabIndex        =   55
-         Top             =   3465
+         Top             =   3420
          Width           =   8835
          _ExtentX        =   15584
-         _ExtentY        =   979
+         _ExtentY        =   3201
          EnterKeyBehaviour=   0
          BackColorAlternate=   0
          GridLinesFixed  =   2
@@ -340,7 +342,7 @@ Begin VB.Form frmArticulosAlta
          _ExtentX        =   2566
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   71237633
+         Format          =   57344001
          CurrentDate     =   40290
       End
       Begin XtremeSuiteControls.FlatEdit txtTecnica 
@@ -578,7 +580,7 @@ Begin VB.Form frmArticulosAlta
          _ExtentX        =   2566
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   71237633
+         Format          =   187695105
          CurrentDate     =   40290
       End
       Begin XtremeSuiteControls.FlatEdit txtFicha 
@@ -1019,6 +1021,7 @@ Begin VB.Form frmArticulosAlta
          _ExtentY        =   582
          _StockProps     =   77
          BackColor       =   14737632
+         Text            =   "55"
          BackColor       =   14737632
       End
       Begin XtremeSuiteControls.FlatEdit pventa3 
@@ -1124,6 +1127,18 @@ Begin VB.Form frmArticulosAlta
          _StockProps     =   79
          Caption         =   "+"
          UseVisualStyle  =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label lblAumento 
+         Height          =   315
+         Left            =   8040
+         TabIndex        =   113
+         Top             =   1170
+         Width           =   885
+         _Version        =   851968
+         _ExtentX        =   1561
+         _ExtentY        =   556
+         _StockProps     =   79
+         Caption         =   "% Aumento"
       End
       Begin XtremeSuiteControls.Label lblStockActual 
          Height          =   240
@@ -1437,7 +1452,7 @@ Begin VB.Form frmArticulosAlta
       ScaleHeight     =   555
       ScaleWidth      =   9405
       TabIndex        =   23
-      Top             =   6060
+      Top             =   7290
       Width           =   9400
       Begin XtremeSuiteControls.PushButton PbAcciones 
          Height          =   345
@@ -1669,28 +1684,28 @@ cpcosto.Text = ""
 End Sub
 
 Private Sub a2_Click()
-Me.txtFicha(8).Text = Val(Me.txtFicha(8).Text) + Val(pventa1.Text)
+Me.txtFicha(8).Text = Val(Me.txtFicha(7).Text) * (1 + Val(pventa1.Text) / 100)
 pventa1.Text = ""
 End Sub
 
 Private Sub a3_Click()
-Me.txtFicha(9).Text = Val(Me.txtFicha(9).Text) + Val(pventa2.Text)
+Me.txtFicha(9).Text = Val(Me.txtFicha(7).Text) * (1 + Val(pventa2.Text) / 100)
 pventa2.Text = ""
 
 End Sub
 
 Private Sub a4_Click()
-Me.txtFicha(10).Text = Val(Me.txtFicha(10).Text) + Val(pventa3.Text)
+Me.txtFicha(10).Text = Val(Me.txtFicha(7).Text) * (1 + Val(pventa3.Text) / 100)
 pventa3.Text = ""
 End Sub
 
 Private Sub a5_Click()
-Me.txtFicha(11).Text = Val(Me.txtFicha(11).Text) + Val(pventa4.Text)
+Me.txtFicha(11).Text = Val(Me.txtFicha(7).Text) * (1 + Val(pventa4.Text) / 100)
 pventa4.Text = ""
 End Sub
 
 Private Sub a7_Click()
-Me.txtFicha(12).Text = Val(Me.txtFicha(12).Text) + Val(pventa5.Text)
+Me.txtFicha(12).Text = Val(Me.txtFicha(7).Text) * (1 + Val(pventa5.Text) / Val(Me.txtFicha(7).Text))
 pventa5.Text = ""
 End Sub
 
@@ -1970,7 +1985,9 @@ Private Sub Form_Load()
     End With
     
     LimpiarCampos
-    'CargarTarifas
+    CargarTarifas
+    
+    
   '  CargarGrillaEspeciales ("")
   '  CargarGrillaArticulosProveedores ("")
     'CargarGrillaStock ("")
@@ -2615,10 +2632,10 @@ Dim i As Integer
         i = 0
         Do Until .EOF = True
            i = i + 1
-            'klexPrecios.TextMatrix(.AbsolutePosition, 1) = "[" & .Fields("idTarifas").Value & "]"
-            'klexPrecios.TextMatrix(.AbsolutePosition, 2) = .Fields("Descripcion").Value
-            'klexPrecios.TextMatrix(.AbsolutePosition, 3) = .Fields("Margen").Value
-            'klexPrecios.TextMatrix(.AbsolutePosition, 4) = .Fields("IvaIncluido").Value
+            klexPrecios.TextMatrix(.AbsolutePosition, 1) = "[" & .Fields("idTarifas").Value & "]"
+            klexPrecios.TextMatrix(.AbsolutePosition, 2) = .Fields("Descripcion").Value
+            klexPrecios.TextMatrix(.AbsolutePosition, 3) = .Fields("Margen").Value
+            klexPrecios.TextMatrix(.AbsolutePosition, 4) = .Fields("IvaIncluido").Value
             klexPrecios.TextMatrix(.AbsolutePosition, 3) = "Lista " + Str(i)
             klexPrecios.TextMatrix(.AbsolutePosition, 7) = traerDatos2("select * from articulos where codigo ='" + Me.txtAlta(0) + "'", "Pventa" + Trim(Str(i)), pathDBMySQL)
         
