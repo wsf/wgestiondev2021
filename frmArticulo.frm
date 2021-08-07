@@ -454,7 +454,15 @@ Dim vulinea As Integer
 Public Sub init()
 'vformatoCampos = "|<Codigo | <Descrip| <Rubro| <SubRubro| <Proveedor| < Fabricante  > PCosto| > PVenta1| > PVenta2 | < Fecha_Modificacion | >Stock"
 'cArticulos = "Codigo,Descrip,Rubro,SubRubro,Proveedor,Fabricante,Porcentaje,format(PCosto,'###,###,##0.000') as pcosto,format(PVenta1,'###,###,##0.000') as pventa1 ,format(PVenta2,'###,###,##0.000') as pventa2,Fecha_Modificacion,Stock, idArticulos"
-cArticulos = "Codigo,Descrip,Rubro,SubRubro,Proveedor,Fabricante,Porcentaje,format(PCosto,4) as pcosto,format(PVenta1,4) , format(PVenta2,4),format(PVenta1*1.21,4),Fecha_Modificacion,Stock, idArticulos"
+
+Dim precio_con_iva As String
+precio_con_iva = "CASE WHEN idPorcentajeIva = 1 THEN format(Pventa1 * 1.105,4) ELSE format(Pventa1 * 1.21,4) END AS PFinal"
+
+'cArticulos = "Codigo,Descrip,Rubro,SubRubro,Proveedor,Fabricante,Porcentaje,format(PCosto,4) as pcosto,format(PVenta1,4) , format(PVenta2,4),format(PVenta1*1.21,4),Fecha_Modificacion,Stock, idArticulos"
+cArticulos = "Codigo,Descrip,Rubro,SubRubro,Proveedor,Fabricante,Porcentaje,format(PCosto,4) as pcosto,format(PVenta1,4) , format(PVenta2,4)," + _
+precio_con_iva + _
+",Fecha_Modificacion,Stock, idArticulos"
+
 
 
 If UCase(LeerXml("Cliente")) = "HERNAN" Then

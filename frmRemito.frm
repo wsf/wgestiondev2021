@@ -23,14 +23,14 @@ Begin VB.Form frmRemito
    ScaleHeight     =   8895
    ScaleWidth      =   14865
    Begin MSDataGridLib.DataGrid dgClientes 
-      Height          =   3255
-      Left            =   1170
+      Height          =   1545
+      Left            =   1140
       TabIndex        =   229
-      Top             =   1575
+      Top             =   1500
       Visible         =   0   'False
-      Width           =   6750
-      _ExtentX        =   11906
-      _ExtentY        =   5741
+      Width           =   6720
+      _ExtentX        =   11853
+      _ExtentY        =   2725
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True
@@ -1867,7 +1867,7 @@ Begin VB.Form frmRemito
             Alignment       =   1
          End
          Begin XtremeSuiteControls.FlatEdit txtDetalle 
-            Height          =   405
+            Height          =   375
             Index           =   6
             Left            =   13650
             TabIndex        =   57
@@ -1875,11 +1875,11 @@ Begin VB.Form frmRemito
             Width           =   1140
             _Version        =   851968
             _ExtentX        =   2011
-            _ExtentY        =   714
+            _ExtentY        =   661
             _StockProps     =   77
             ForeColor       =   14937857
-            BackColor       =   0
-            BackColor       =   0
+            BackColor       =   4210752
+            BackColor       =   4210752
             Alignment       =   1
          End
          Begin XtremeSuiteControls.CheckBox chkIncCod 
@@ -3286,22 +3286,15 @@ Begin VB.Form frmRemito
          Width           =   1875
          _ExtentX        =   3307
          _ExtentY        =   661
-         Caption         =   "0.00"
          BeginProperty Fount {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   8.25
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         CaptionColour   =   15591427
-         Colour1         =   255
-         Colour2         =   255
-         CaptionAlignment=   1
-         FlatBorderColour=   255
-         TextShadowColour=   15591427
       End
       Begin XtremeSuiteControls.CheckBox checkSaldo 
          Height          =   255
@@ -6972,7 +6965,7 @@ Private Sub push_consultar_doc_Click()
     Dim nro_comp As String
     
     
-    tipo_doc = InputBox("Ingresar el nro del tipo de comprobante" + Chr(13) + "1- Fact A, 6- Fact B")
+    tipo_doc = InputBox("Ingresar el nro del tipo de comprobante" + Chr(13) + "1- Fact A, 6- Fact B, 3- NC A")
     nro_comp = Trim(Str(InputBox("Ingresar el nro de comprobante: ")))
     
     punto_venta = CInt(cboPuntoDeVenta.Text)
@@ -6983,9 +6976,37 @@ Private Sub push_consultar_doc_Click()
            
            
            If fe.UltimoMensajeError = "" Then
-              MsgBox "CAE consultado: " + fe.F1RespuestaDetalleCae + " Fecha Vto : " + fe.F1DetalleCbteFch + Chr(13) _
-              + "Total: " + Str(fe.F1DetalleImpTotal) + Chr(13) _
+              
+            
+            ' genero el qr del documento que estoy consultando
+            vqrnombre = Trim(Replace(txtCliente(3), "-", "")) + Trim(nro_comp)
+            fe.F1Detalleqrarchivo = App.Path + "\" + vqrnombre + ".jpg"
+            fe.F1Detalleqrformato = 6
+            fe.F1Detalleqrtipocodigo = "E"
+            fe.F1Detalleqrtolerancia = 1
+            fe.F1Detalleqrresolucion = 2
+              
+              
+              
+              MsgBox "- CAE consultado: " + fe.F1RespuestaDetalleCae + Chr(13) + "- Fecha Vto : " + fe.F1DetalleCbteFch + Chr(13) _
+              + "- Total: " + Str(fe.F1DetalleImpTotal) + Chr(13) _
+              + "- Nro compronate: " + nro_comp + Chr(13) _
+              + "- Tipo comprobante: " + Str(tipo_doc) + Chr(13) _
+              + "- CUIT " + fe.F1DetalleDocNro + Chr(13) _
+              + Chr(13) _
               + "Si este comprobante no está ingresado en el sistema, UD. debe REINGRESAR FACTURA poniendo de modo manual el CAE y la Fecha que aquì se indica"
+           
+            If MsgBox("Desea imprimir un compronate con estos datos fiscales", vbYesNo) = vbYes Then
+                      
+                Me.vcae.Text = fe.F1RespuestaDetalleCae
+                Me.vcaeFecha2.Text = fe.F1DetalleCbteFch
+                Me.chkReingresarFact.Value = xtpChecked
+                
+                MsgBox "Debe completar todos los datos del encabezado del documento correspondientes a este documento"
+                
+            End If
+            
+           
            Else
               MsgBox ("fallo consulta: " + fe.UltimoMensajeError)
            End If

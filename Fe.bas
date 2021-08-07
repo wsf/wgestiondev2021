@@ -478,9 +478,11 @@ End If
         fe.F1DetalleCbtesAsocTipo = vTipoComprobante
         fe.F1DetalleCbtesAsocPtoVta = Val(vPuntoDeVenta)
         
-        Dim vnro_comprobante_asociado
+        Dim vnro_comprobante_asociado, vfecha_comp_asociado
         
         vnro_comprobante_asociado = InputBox("Ingresar nro de comprobante asociado")
+        vfecha_comp_asociado = InputBox("Fecha del comprobante asociado. Ejemplo: 20210630")
+        
         
         'fe.F1DetalleCbtesAsocNroS = vnro_comprobante_asociado
         
@@ -488,10 +490,10 @@ End If
         
         fe.F1DetalleCbtesAsocItemCantidad = 1
        
-        fe.F1DetalleCbtesAsocFecha = "20210429"
+        fe.F1DetalleCbtesAsocFecha = vfecha_comp_asociado
         
-        fe.F1DetallePeriodoAsocFchDesde = "20210426"
-        fe.F1DetallePeriodoAsocFchHasta = "20210426"
+        fe.F1DetallePeriodoAsocFchDesde = vfecha_comp_asociado
+        fe.F1DetallePeriodoAsocFchHasta = vfecha_comp_asociado
 
         
     End If

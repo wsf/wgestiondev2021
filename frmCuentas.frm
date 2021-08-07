@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#13.0#0"; "Codejock.CommandBars.v13.0.0.Demo.ocx"
 Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#13.0#0"; "Codejock.Controls.v13.0.0.Demo.ocx"
@@ -424,7 +424,7 @@ Private Sub BorrarNodo()
     Set tNodo = TVCuentas.SelectedItem
     i = tNodo.children
     Dim padre As String
-    padre = tNodo.Parent.Key
+    padre = tNodo.Parent.key
     
     ' Avisar que se va a borrar un nodo que tiene hijos
     If i > 0 Then
@@ -857,7 +857,7 @@ On Error Resume Next
                 
     With TVCuentas
         For i = 2 To Val(.Nodes.Count)
-            If .Nodes.Item(i).Key = vNodo Then
+            If .Nodes.Item(i).key = vNodo Then
                 .Nodes.Item(i).Text = .Nodes.Item(i).Text & "...$ " & Abs(vSaldoCuenta)
                 Exit For
             End If
@@ -889,7 +889,7 @@ Private Sub TVCuentas_NodeClick(ByVal Node As MSComctlLib.Node)
     Dim sqlConcepto As String
     cmdConcepto.ActiveConnection = ConnDDBB
       
-    sqlConcepto = "SELECT * FROM Cuentas WHERE (CodigoCuenta = '" & Mid(Node.Key, 3, ContarCaracteres(Node.Key, "-") - 2) & "')"
+    sqlConcepto = "SELECT * FROM Cuentas WHERE (CodigoCuenta = '" & Mid(Node.key, 3, ContarCaracteres(Node.key, "-") - 2) & "')"
     
     Dim rsConcepto As New ADODB.Recordset
       

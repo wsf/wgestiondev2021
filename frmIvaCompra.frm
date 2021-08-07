@@ -1254,8 +1254,8 @@ On Error Resume Next
         .KeyPreview = True
         .Top = 0
         .Left = 0
-        .Width = 12000
-        .Height = 6550
+        .width = 12000
+        .height = 6550
         .Show
     End With
     

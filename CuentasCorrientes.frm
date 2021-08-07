@@ -1882,8 +1882,8 @@ Function BuscarCliente(vViene As String) As Boolean
             txtComentario.Text = EsNulo(.Recordset("Observaciones").Value)
             
             vnombre = txtCliente.Text
-            txtCuit.Text = EsNulo(.Recordset("cuit").Value)
-            txtCuit.Locked = True
+            txtCUIT.Text = EsNulo(.Recordset("cuit").Value)
+            txtCUIT.Locked = True
             
             BuscarCliente = True
             
@@ -2705,7 +2705,7 @@ End Sub
 
 Private Sub cmdfiltrardoc_Click()
 On Error Resume Next
-    With bFacturas
+    With bfacturas
         If .ConnectionString = "" Then .ConnectionString = pathDBMySQL
         '.RecordSource = "Select * from cuentascorrientes where codigo = '" & trim(txtcliente.tag) & "' and (debito > 0) and (Fecha >= '" & strfechaMySQl(fdesdedoc.Value) + "' and Fecha <= '" & strfechaMySQl(fhastadoc.Value) + "')"
         .RecordSource = "Select Fecha, codigo, Comentario, credito, remito, sumadetotaliva, sumadepago, sumaderesta, diferencia, últimodefecha, id, ncomprobante from factura_ctacte where codigo = '" & Trim(txtCliente.Tag) & "' and (Comentario like '%Documento%' or Comentario like '%Dif. por Consumo%') and credito = 0 ORDER BY fecha ASC, id ASC"
@@ -2780,14 +2780,14 @@ End Sub
 Private Sub cmdNoPagarFactura_Click()
 On Error Resume Next
 
-    With bFacturas
+    With bfacturas
         If (.Recordset.EOF = True) Or (.Recordset.BOF = True) Then
             MsgBox "No tiene una Factura Seleccionada para deshacer el pago", vbInformation, "Mensaje ..."
             Exit Sub
         End If
     End With
     With bfdetalle
-        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & Val(bFacturas.Recordset("remito").Value) & ")"
+        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & Val(bfacturas.Recordset("remito").Value) & ")"
         .Refresh
 
         Do Until .Recordset.EOF = True
@@ -2811,7 +2811,7 @@ End Sub
 Private Sub cmdVerDebitos_Click()
 On Error Resume Next
     
-    If (bFacturas.Recordset.BOF = True) Or (bFacturas.Recordset.EOF = True) Then Exit Sub
+    If (bfacturas.Recordset.BOF = True) Or (bfacturas.Recordset.EOF = True) Then Exit Sub
     'With frmCtaCteAgrupados
     '    .bctacte_agrupados.ConnectionString = pathDBMySQL
     '    .bctacte_agrupados.RecordSource = "select * from ctacte_agrupados where ctacte_padre = " & Trim(bfacturas.Recordset("remito").value)
@@ -2848,7 +2848,7 @@ End Sub
 Private Sub cmdVerRemitos_Click()
 On Error Resume Next
     
-    If (bFacturas.Recordset.BOF = True) Or (bFacturas.Recordset.EOF = True) Then Exit Sub
+    If (bfacturas.Recordset.BOF = True) Or (bfacturas.Recordset.EOF = True) Then Exit Sub
 
     'With frmFacturasAgrupadas
     '
@@ -2971,7 +2971,7 @@ Private Sub cmdLimpiar_Click()
     On Error Resume Next
     
     txtCliente.Text = ""
-    txtCuit.Text = ""
+    txtCUIT.Text = ""
 
     txtCliente.Tag = ""
   
@@ -3001,8 +3001,8 @@ On Error Resume Next
         .Fields("ctacte_padre").Value = vuremito
         
         For i = 1 To 18
-            If Not IsNull(bFacturas.Recordset(i).Value) = True Then
-                .Fields(i).Value = bFacturas.Recordset(i).Value
+            If Not IsNull(bfacturas.Recordset(i).Value) = True Then
+                .Fields(i).Value = bfacturas.Recordset(i).Value
             End If
         Next
         
@@ -3123,7 +3123,7 @@ Private Sub CargarDetalles()
     With bfdetalle
         .CursorLocation = adUseClient
         If .ConnectionString = "" Then .ConnectionString = pathDBMySQL
-        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & bFacturas.Recordset("Remito").Value & ")"
+        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & bfacturas.Recordset("Remito").Value & ")"
         .Refresh
     End With
 
@@ -3361,7 +3361,7 @@ Private Sub Form_KeyUp(KeyCode As Integer, _
     If KeyCode = vbKeyF1 Then
         txtCliente.Text = ""
         txtCliente.Tag = ""
-        txtCuit.Text = ""
+        txtCUIT.Text = ""
         txtComentario.Text = ""
         
         dtpDesde.Value = Date - 90
@@ -3648,7 +3648,11 @@ Private Sub ImprimirFichaCliente()
         
     End With
     
-    If Err Then GrabarLog "ImprimirFichaCliente", Err.Number & " " & Err.Description, Me.Name
+    'If Err Then GrabarLog "ImprimirFichaCliente", Err.Number & " " & Err.Description, Me.Name
+    If Err Then
+        MsgBox Err.Description
+    End If
+        
 End Sub
 Private Sub cambioFiltroParaReporte()
 Dim sqlFiltro As String

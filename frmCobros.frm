@@ -3598,8 +3598,6 @@ End Sub
 Private Sub PusImprimirComprobante_Click()
     vDraft = True
     llenarDrRecibo
-    
-    
     drRecibo.Show
 End Sub
 

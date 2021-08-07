@@ -874,7 +874,6 @@ Dim ponerenciti As Boolean
                .Recordset("Total").Value = IIf(bFacturas.Recordset("Total").Value > 0, bFacturas.Recordset("Total").Value * (-1), bFacturas.Recordset("Total").Value)
     
                 .Recordset("Neto").Value = .Recordset("Total").Value / 1.21
-               
                .Recordset("iva210").Value = .Recordset("total").Value - .Recordset("neto").Value
         
         
@@ -944,51 +943,7 @@ Dim ponerenciti As Boolean
        
        KlexFacturas.TopRow = .Recordset.AbsolutePosition
 
-       
-       
-       ' --- Hago los cálculos para el iva0 -------------------
-       
-        Dim vtotal_netos, vneto, vtotal, neto_para0 As Double
-        
-        Dim neto_para21, neto_para105, neto_para27, vviva21, vviva105, vviva27 As Double
-        
-            
-        neto_para21 = fcalculaNeto(21, .Recordset("iva210").Value)
-        
-        neto_para105 = fcalculaNeto(10.5, .Recordset("iva105").Value)
-        
-        neto_para27 = fcalculaNeto(27, .Recordset("iva270").Value)
-       
-             
-        vviva21 = .Recordset("iva210").Value
-        
-        vviva105 = .Recordset("iva105").Value
-        
-        vviva27 = .Recordset("iva270").Value
-       
-               
-        Dim vivas As Double
-        
-        vivas = (vviva105 / 10.5 * 100) + (vviva21 / 21 * 100) + (vviva27 / 27 * 100)
-        
-        vneto = .Recordset("neto").Value
-        
-        neto_para0 = vneto - vivas
-       
-        
-        'vtotal_netos = vviva21 + vviva105 + vviva27
-        
-        'vneto = .Recordset("neto").Value
-        'vtotal = .Recordset("total").Value
-        
-        'neto_para0 = vtotal - vtotal_netos
-        
-        '------------------------------------------------------------------
-            
-          
-       
-       
-       ' ------------------------citi cbte ----------------------------------
+           ' ------------------------citi cbte ----------------------------------
        
        ' Dim vtipoDocu As String
        ' Dim vali As Double
@@ -1075,8 +1030,6 @@ Dim ponerenciti As Boolean
         If Abs(.Recordset("iva105").Value) > 0 Then vali = vali + 1
         If Abs(.Recordset("iva210").Value) > 0 Then vali = vali + 1
         If Abs(.Recordset("iva270").Value) > 0 Then vali = vali + 1
-        If neto_para0 > 0 Then vali = vali + 1
-        
         
         If vali = 0 Then vali = 1
 
@@ -1102,18 +1055,28 @@ Dim ponerenciti As Boolean
         
         If vgline2 > 1 Then vla = vbCrLf
         
-        ' --
-        ' -------- acá arranca alicuota  ---  Archivo REGINFO_CV_VENTAS_ALICUOTAS_99999999.txt
-        ' --
+        ' -------- acá arranca alicuota
+        
         
         vla = vla + fn(Val(vtipoDocu), 3, "N") ' 1
         vla = vla + fn(.Recordset("PuntoDeVenta").Value, 5, "N") ' 2
         vla = vla + fn(.Recordset("NroComprobante").Value, 20, "N") ' nro de comprobante '3'
         
         
+        Dim neto_para21, neto_para105, neto_para27, vtotal, vneto   As Double
+        
+        vtotal = .Recordset("total")
+        vneto = .Recordset("neto")
+        
+        neto_para21 = fcalculaNeto(21, .Recordset("iva210").Value, vtotal, vneto)
+        
+        neto_para105 = fcalculaNeto(10.5, .Recordset("iva105").Value, vtotal, vneto)
+        
+        neto_para27 = fcalculaNeto(27, .Recordset("iva270").Value, vtotal, vneto)
         
         
- 
+        
+        neto_para105 = Round((vneto - Round(neto_para21, 2)), 3)
         
        ' vla = vla + fn(.Recordset("Neto").Value, 15, "S")  ' Importe neto gravado '4'
 
@@ -1122,29 +1085,12 @@ Dim ponerenciti As Boolean
        ' parada todo ale
 
         b1 = 0
+        If Abs(.Recordset("iva105").Value) > 0.01 Then ' iva 10.5'
         
-        
-        If neto_para0 > 0 Then ' veo si tiene iva 0
-        
-            'tiene iva cero
-            
-            vla2 = vla + fn(neto_para0, 15, "S")
-            vla2 = vla2 + fn(3, 4, "N")
-            vla2 = vla2 + fn(0, 15, "S")
-            
-            If ponerenciti Then Print #Canal2, vla2;  '\REGINFO_CV_VENTAS_ALICUOTAS.TXT'
-            
-            b1 = b1 + 1
-        End If
-        
-    
-        
-        If Abs(.Recordset("iva105").Value) > 0 Then ' iva 10.5'
                 vla2 = vla + fn(neto_para105, 15, "S")
                 vla2 = vla2 + fn(4, 4, "N")
                 vla2 = vla2 + fn(Abs(.Recordset("iva105").Value), 15, "S")
                 
-               'Escribre una nueva linea en ventas_alicuotas
                If ponerenciti Then Print #Canal2, vla2;  '\REGINFO_CV_VENTAS_ALICUOTAS.TXT'
                 
                 b1 = b1 + 1
@@ -1176,13 +1122,6 @@ Dim ponerenciti As Boolean
         
         End If
         
-        
-        ' Acá tengo que armar un cálculo para deducir si tengo iva en cero.   IVA0
-        
-        
-        
-        
-        
         If b1 = 0 Then ' no hubo ivas
             vgline2 = vgline2 - 1
         End If
@@ -1195,9 +1134,20 @@ Dim ponerenciti As Boolean
 If Err Then GrabarLog "CopiarTemp", Err.Number & " " & Err.Description, Me.Name
 End Sub
 
-Function fcalculaNeto(piva As Double, vIva As Double) As Double
+Function fcalculaNeto(piva As Double, vIva As Double, ByVal vtotal As Double, ByVal vneto As Double) As Double
+    Dim p, s, d As Double
+    
+    d = vtotal - vneto
+    
+    p = vIva * 100 / d
+    
+    s = vneto * p / 100
 
-    fcalculaNeto = (vIva * 100 / piva)
+
+    'fcalculaNeto = (vIva * 100 / piva)
+    
+    fcalculaNeto = s
+
 
 End Function
 
@@ -1364,8 +1314,8 @@ End If
             .Refresh
             
             If Not .Recordset.EOF = True Then
-                barra.Value = 0
-                barra.Max = .Recordset.RecordCount
+                Barra.Value = 0
+                Barra.Max = .Recordset.RecordCount
                 FormatoGrilla (.Recordset.RecordCount)
             Else
                 MsgBox "No existen movimientos de este mes!!!", vbExclamation, "Mensaje ..."
@@ -1478,8 +1428,8 @@ On Error Resume Next
         .Refresh
         If Not .Recordset.EOF = True Then
             .Recordset.MoveFirst
-            barra.Value = 0
-            barra.Max = .Recordset.RecordCount
+            Barra.Value = 0
+            Barra.Max = .Recordset.RecordCount
         Else
             MsgBox "NO tiene datos pre-cargados para guardar!!", vbExclamation, "Mensaje ..."
             Exit Sub
@@ -1492,7 +1442,7 @@ On Error Resume Next
                     bIvaVenta.Recordset(i).Value = .Recordset(i).Value
                 End If
             Next
-            barra.Value = barra.Value + 1
+            Barra.Value = Barra.Value + 1
             bIvaVenta.Recordset.Update
             .Recordset.MoveNext
         Loop
@@ -1511,8 +1461,8 @@ On Error Resume Next
         .KeyPreview = True
         .Top = 0
         .Left = 0
-        .Width = 12000
-        .Height = 6550
+        .width = 12000
+        .height = 6550
         .Show
     End With
 

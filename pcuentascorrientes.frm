@@ -462,7 +462,7 @@ Begin VB.Form frmCtaCteP
          _ExtentX        =   4736
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   70909953
+         Format          =   189333505
          CurrentDate     =   38028
       End
       Begin MSComCtl2.DTPicker dhpHasta 
@@ -474,7 +474,7 @@ Begin VB.Form frmCtaCteP
          _ExtentX        =   4736
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   70909953
+         Format          =   189333505
          CurrentDate     =   38028
       End
       Begin VB.Label saldocheque 
@@ -643,9 +643,9 @@ Begin VB.Form frmCtaCteP
       TabCaption(0)   =   "Ing. Movimiento"
       TabPicture(0)   =   "pcuentascorrientes.frx":7371
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "cmdImprimir(0)"
+      Tab(0).Control(0)=   "Frame1"
       Tab(0).Control(1)=   "cmdGuardar"
-      Tab(0).Control(2)=   "Frame1"
+      Tab(0).Control(2)=   "cmdImprimir(0)"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Ficha Proveedor"
       TabPicture(1)   =   "pcuentascorrientes.frx":738D
@@ -658,9 +658,9 @@ Begin VB.Form frmCtaCteP
       TabCaption(2)   =   "Facturas de Proveedores"
       TabPicture(2)   =   "pcuentascorrientes.frx":73A9
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "vsaldo"
+      Tab(2).Control(0)=   "dgAsignaciones"
       Tab(2).Control(1)=   "asigna"
-      Tab(2).Control(2)=   "dgAsignaciones"
+      Tab(2).Control(2)=   "vsaldo"
       Tab(2).ControlCount=   3
       Begin XtremeSuiteControls.GroupBox GBPagos 
          Height          =   3465
@@ -1435,7 +1435,7 @@ Begin VB.Form frmCtaCteP
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   70909953
+            Format          =   189333505
             CurrentDate     =   38028
          End
          Begin VB.Label Label25 
@@ -1596,7 +1596,7 @@ On Error Resume Next
     
             txtProveedor.Tag = EsNulo(.Fields("Codigo").Value)
             txtProveedor.Text = EsNulo(.Fields("Nombre").Value)
-            txtCuit.Text = EsNulo(.Fields("cuit").Value)
+            txtCUIT.Text = EsNulo(.Fields("cuit").Value)
             
             'txtImporte.SetFocus
             
@@ -1930,7 +1930,7 @@ On Error Resume Next
     If Index = 0 Then
         txtProveedor.Tag = ""
         txtProveedor.Text = ""
-        txtCuit.Text = ""
+        txtCUIT.Text = ""
         txtImporte.Text = ""
         txtComentario.Text = ""
         txtComentario.Tag = ""

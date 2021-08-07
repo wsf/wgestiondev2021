@@ -93,7 +93,7 @@ Begin VB.Form frmCambioSaldoCtate
       _ExtentX        =   4524
       _ExtentY        =   556
       _Version        =   393216
-      Format          =   16384001
+      Format          =   201064449
       CurrentDate     =   40694
    End
    Begin XtremeSuiteControls.RadioButton rdebito 
@@ -265,14 +265,14 @@ If Err < 0 Then
 End If
 End Sub
 
-Private Sub vcomentario_KeyPress(Keyascii As Integer)
-If Keyascii = 13 Then PbAcciones(0).SetFocus
+Private Sub vcomentario_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then PbAcciones(0).SetFocus
 End Sub
 
-Private Sub vfecha_KeyPress(Keyascii As Integer)
-If Keyascii = 13 Then vsaldo.SetFocus
+Private Sub vfecha_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then vsaldo.SetFocus
 End Sub
 
-Private Sub vsaldo_KeyPress(Keyascii As Integer)
-If Keyascii = 13 Then vcomentario.SetFocus
+Private Sub vsaldo_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then vcomentario.SetFocus
 End Sub

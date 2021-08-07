@@ -57,7 +57,6 @@ Begin VB.Form frmBuscarFactura
       _ExtentY        =   13414
       _StockProps     =   68
       ItemCount       =   8
-      SelectedItem    =   3
       Item(0).Caption =   "Filtar datos"
       Item(0).ControlCount=   12
       Item(0).Control(0)=   "Picture1"
@@ -123,9 +122,10 @@ Begin VB.Form frmBuscarFactura
       Item(7).Control(2)=   "lblerrores"
       Begin XtremeSuiteControls.FlatEdit FlaVerDatos 
          Height          =   255
-         Left            =   15270
+         Left            =   -54730
          TabIndex        =   206
          Top             =   360
+         Visible         =   0   'False
          Width           =   2280
          _Version        =   851968
          _ExtentX        =   4022
@@ -136,9 +136,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.PushButton PusValidarEn 
          Height          =   285
-         Left            =   8550
+         Left            =   -61450
          TabIndex        =   205
          Top             =   6210
+         Visible         =   0   'False
          Width           =   3030
          _Version        =   851968
          _ExtentX        =   5345
@@ -149,9 +150,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.GroupBox GroCantidadDe 
          Height          =   1050
-         Left            =   8550
+         Left            =   -61450
          TabIndex        =   200
          Top             =   6525
+         Visible         =   0   'False
          Width           =   3030
          _Version        =   851968
          _ExtentX        =   5345
@@ -215,9 +217,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin MSHierarchicalFlexGridLib.MSHFlexGrid log2 
          Height          =   3705
-         Left            =   480
+         Left            =   -69520
          TabIndex        =   180
          Top             =   1440
+         Visible         =   0   'False
          Width           =   16755
          _ExtentX        =   29554
          _ExtentY        =   6535
@@ -229,9 +232,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.PushButton PusIrA 
          Height          =   285
-         Left            =   15720
+         Left            =   -54280
          TabIndex        =   176
          Top             =   6600
+         Visible         =   0   'False
          Width           =   1785
          _Version        =   851968
          _ExtentX        =   3149
@@ -242,9 +246,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.ProgressBar barra2 
          Height          =   165
-         Left            =   90
+         Left            =   -69910
          TabIndex        =   173
          Top             =   390
+         Visible         =   0   'False
          Width           =   9540
          _Version        =   851968
          _ExtentX        =   16828
@@ -284,17 +289,17 @@ Begin VB.Form frmBuscarFactura
       Begin VB.CommandButton Command2 
          Caption         =   "..."
          Height          =   285
-         Left            =   -67300
+         Left            =   2700
          TabIndex        =   151
          Top             =   810
-         Visible         =   0   'False
          Width           =   525
       End
       Begin XtremeSuiteControls.TabControl TabControl1 
          Height          =   1275
-         Left            =   60
+         Left            =   -69940
          TabIndex        =   134
          Top             =   6270
+         Visible         =   0   'False
          Width           =   8355
          _Version        =   851968
          _ExtentX        =   14737
@@ -552,9 +557,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.PushButton PushButton12 
          Height          =   285
-         Left            =   15240
+         Left            =   -54760
          TabIndex        =   132
          Top             =   0
+         Visible         =   0   'False
          Width           =   1095
          _Version        =   851968
          _ExtentX        =   1931
@@ -567,9 +573,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.GroupBox GroupBox14 
          Height          =   465
-         Left            =   11730
+         Left            =   -58270
          TabIndex        =   123
          Top             =   7110
+         Visible         =   0   'False
          Width           =   5835
          _Version        =   851968
          _ExtentX        =   10292
@@ -790,9 +797,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin MSHierarchicalFlexGridLib.MSHFlexGrid KlexDocumentos 
          Height          =   5535
-         Left            =   150
+         Left            =   -69850
          TabIndex        =   87
          Top             =   630
+         Visible         =   0   'False
          Width           =   17415
          _ExtentX        =   30718
          _ExtentY        =   9763
@@ -810,12 +818,11 @@ Begin VB.Form frmBuscarFactura
          BorderStyle     =   0  'None
          ForeColor       =   &H80000008&
          Height          =   5325
-         Left            =   -69850
+         Left            =   150
          ScaleHeight     =   5325
          ScaleWidth      =   17385
          TabIndex        =   39
          Top             =   780
-         Visible         =   0   'False
          Width           =   17385
          Begin XtremeSuiteControls.PushButton PushButton20 
             Height          =   285
@@ -1851,10 +1858,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.GroupBox GroupBox8 
          Height          =   555
-         Left            =   -69790
+         Left            =   210
          TabIndex        =   89
          Top             =   6150
-         Visible         =   0   'False
          Width           =   3615
          _Version        =   851968
          _ExtentX        =   6376
@@ -1888,10 +1894,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.GroupBox GBTipoMovimiento 
          Height          =   555
-         Left            =   -69940
+         Left            =   60
          TabIndex        =   106
          Top             =   6810
-         Visible         =   0   'False
          Width           =   17595
          _Version        =   851968
          _ExtentX        =   31036
@@ -1901,7 +1906,7 @@ Begin VB.Form frmBuscarFactura
          BorderStyle     =   1
          Begin XtremeSuiteControls.PushButton cmdFiltrar 
             Height          =   375
-            Left            =   60
+            Left            =   90
             TabIndex        =   107
             Top             =   120
             Width           =   17505
@@ -2026,8 +2031,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin MSAdodcLib.Adodc Adodc1 
          Height          =   330
-         Left            =   10380
+         Left            =   -59620
          Top             =   5820
+         Visible         =   0   'False
          Width           =   2505
          _ExtentX        =   4419
          _ExtentY        =   582
@@ -2072,8 +2078,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin MSAdodcLib.Adodc bdetalle 
          Height          =   330
-         Left            =   14190
+         Left            =   -55810
          Top             =   5730
+         Visible         =   0   'False
          Width           =   2505
          _ExtentX        =   4419
          _ExtentY        =   582
@@ -2118,9 +2125,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.PushButton PushButton13 
          Height          =   285
-         Left            =   16320
+         Left            =   -53680
          TabIndex        =   133
          Top             =   0
+         Visible         =   0   'False
          Width           =   1185
          _Version        =   851968
          _ExtentX        =   2090
@@ -2132,10 +2140,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.PushButton PushButton23 
          Height          =   345
-         Left            =   -67300
+         Left            =   2700
          TabIndex        =   192
          Top             =   390
-         Visible         =   0   'False
          Width           =   525
          _Version        =   851968
          _ExtentX        =   926
@@ -2146,10 +2153,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.FlatEdit vcodEmpresa 
          Height          =   315
-         Left            =   -68590
+         Left            =   1410
          TabIndex        =   193
          Top             =   390
-         Visible         =   0   'False
          Width           =   1245
          _Version        =   851968
          _ExtentX        =   2196
@@ -2161,10 +2167,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.FlatEdit vdescEmpresa 
          Height          =   345
-         Left            =   -66700
+         Left            =   3300
          TabIndex        =   194
          Top             =   360
-         Visible         =   0   'False
          Width           =   3975
          _Version        =   851968
          _ExtentX        =   7011
@@ -2176,10 +2181,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.FlatEdit vDesRepartidor 
          Height          =   315
-         Left            =   -59950
+         Left            =   10050
          TabIndex        =   196
          Top             =   390
-         Visible         =   0   'False
          Width           =   4965
          _Version        =   851968
          _ExtentX        =   8758
@@ -2190,10 +2194,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.FlatEdit vcodRepartidor 
          Height          =   315
-         Left            =   -61360
+         Left            =   8640
          TabIndex        =   197
          Top             =   390
-         Visible         =   0   'False
          Width           =   795
          _Version        =   851968
          _ExtentX        =   1402
@@ -2205,10 +2208,9 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.PushButton PushButton24 
          Height          =   315
-         Left            =   -60520
+         Left            =   9480
          TabIndex        =   198
          Top             =   390
-         Visible         =   0   'False
          Width           =   495
          _Version        =   851968
          _ExtentX        =   873
@@ -2224,10 +2226,9 @@ Begin VB.Form frmBuscarFactura
          ForeColor       =   &H000000FF&
          Height          =   195
          Index           =   10
-         Left            =   -62500
+         Left            =   7500
          TabIndex        =   120
          Top             =   450
-         Visible         =   0   'False
          Width           =   1005
       End
       Begin VB.Label lblDocumento 
@@ -2237,17 +2238,17 @@ Begin VB.Form frmBuscarFactura
          ForeColor       =   &H000000FF&
          Height          =   195
          Index           =   9
-         Left            =   -69700
+         Left            =   300
          TabIndex        =   195
          Top             =   420
-         Visible         =   0   'False
          Width           =   945
       End
       Begin XtremeSuiteControls.Label lblSaldoReal 
          Height          =   225
-         Left            =   11850
+         Left            =   -58150
          TabIndex        =   175
          Top             =   6630
+         Visible         =   0   'False
          Width           =   1845
          _Version        =   851968
          _ExtentX        =   3254
@@ -2260,9 +2261,10 @@ Begin VB.Form frmBuscarFactura
          BackColor       =   &H00747474&
          ForeColor       =   &H80000008&
          Height          =   285
-         Left            =   13740
+         Left            =   -56260
          TabIndex        =   174
          Top             =   6570
+         Visible         =   0   'False
          Width           =   1785
       End
       Begin VB.Label vlpagado 
@@ -2270,9 +2272,10 @@ Begin VB.Form frmBuscarFactura
          BackColor       =   &H00747474&
          ForeColor       =   &H80000008&
          Height          =   315
-         Left            =   13740
+         Left            =   -56260
          TabIndex        =   172
          Top             =   6210
+         Visible         =   0   'False
          Width           =   1785
       End
       Begin VB.Label vlsaldo 
@@ -2280,9 +2283,10 @@ Begin VB.Form frmBuscarFactura
          BackColor       =   &H00747474&
          ForeColor       =   &H80000008&
          Height          =   345
-         Left            =   15720
+         Left            =   -54280
          TabIndex        =   171
          Top             =   6210
+         Visible         =   0   'False
          Width           =   1785
       End
       Begin VB.Label vltotal 
@@ -2290,9 +2294,10 @@ Begin VB.Form frmBuscarFactura
          BackColor       =   &H00747474&
          ForeColor       =   &H80000008&
          Height          =   315
-         Left            =   11820
+         Left            =   -58180
          TabIndex        =   170
          Top             =   6210
+         Visible         =   0   'False
          Width           =   1785
       End
       Begin XtremeSuiteControls.Label lblerrores 
@@ -2310,9 +2315,10 @@ Begin VB.Form frmBuscarFactura
       End
       Begin XtremeSuiteControls.Label Label9 
          Height          =   225
-         Left            =   11670
+         Left            =   -58330
          TabIndex        =   127
          Top             =   6900
+         Visible         =   0   'False
          Width           =   5715
          _Version        =   851968
          _ExtentX        =   10081
@@ -2748,15 +2754,15 @@ Begin VB.Form frmBuscarFactura
       Tab(0).ControlCount=   0
       TabCaption(1)   =   "Documentos Impagos"
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label13"
-      Tab(1).Control(1)=   "Label14"
-      Tab(1).Control(2)=   "Label15"
-      Tab(1).Control(3)=   "DataGrid1"
+      Tab(1).Control(0)=   "cmdImprimeD"
+      Tab(1).Control(1)=   "cmdImprimeF"
+      Tab(1).Control(2)=   "txtClienteImpagos"
+      Tab(1).Control(3)=   "cmdImprimeFD"
       Tab(1).Control(4)=   "txtRepartoImpagos"
-      Tab(1).Control(5)=   "cmdImprimeFD"
-      Tab(1).Control(6)=   "txtClienteImpagos"
-      Tab(1).Control(7)=   "cmdImprimeF"
-      Tab(1).Control(8)=   "cmdImprimeD"
+      Tab(1).Control(5)=   "DataGrid1"
+      Tab(1).Control(6)=   "Label15"
+      Tab(1).Control(7)=   "Label14"
+      Tab(1).Control(8)=   "Label13"
       Tab(1).ControlCount=   9
       TabCaption(2)   =   "Documentos Pagos"
       Tab(2).ControlEnabled=   0   'False

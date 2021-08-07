@@ -3106,8 +3106,11 @@ On Error Resume Next
             .vEmpresaPrincipal = False
         End If
         
+        mensaje "10 - vTipoCliente: " + .vTipoCliente
+        
     End With
-    mensaje "10"
+    
+    
    ' If Not Login = "Correcto" Then Exit Function
     
     Set ConnDDBB = New ADODB.Connection
@@ -3128,7 +3131,7 @@ On Error Resume Next
     'No se usa hasta no empezar con el MySQL
     'vDSN = IniciaDSN(vConfigGral.vempresa)
     
-    mensaje "11"
+    mensaje "11 - " + pathDBMySQL
     
     
     
@@ -3139,12 +3142,12 @@ On Error Resume Next
        .CursorLocation = adUseClient
        .Open
        
-       mensaje "--->" + vConfigGral.vComunaCnn
+       mensaje "12- " + vConfigGral.vComunaCnn
        
        mensaje pathDBMySQL
        
        If .State = 0 Then
-            mensaje "Error interno :" + Err.Description + " - " + Str(Err.Number)
+            mensaje "13- Error interno :" + Err.Description + " - " + Str(Err.Number)
             
            ' Exit Function
         End If
@@ -3152,13 +3155,15 @@ On Error Resume Next
     
     
     
-       mensaje pathDBMySQL
+       mensaje "14- Última linea de login " + Chr(13) + pathDBMySQL
+       
+       
 If Err Then
 
-mensaje "Error : " + Err.Description
-MsgBox Err.Number + " " + Err.Description
-
-GrabarLog "Login", Err.Number & " " & Err.Description, "Global"
+    mensaje "Error : " + Err.Description
+    MsgBox Err.Number + " " + Err.Description
+    
+    GrabarLog "Login", Err.Number & " " & Err.Description, "Global"
 End If
 End Function
 Public Sub DatosEmpresa()
@@ -4267,7 +4272,7 @@ If Err Then
 End If
 End Function
 
-Public Sub log22(v As String)
+Public Sub Log22(v As String)
 
 On Error Resume Next
     v = Str(Date) + " " + Str(Time) + " -> " + v
