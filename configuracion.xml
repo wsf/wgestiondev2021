@@ -4,7 +4,7 @@
 	<Titulo>Programa de Gestion Comercial a medida para :</Titulo>
 	<UServidor>MySQL</UServidor>
 	<UUsuario>Admin</UUsuario>
-	<UEmpresa>wgestiontito</UEmpresa>
+	<UEmpresa>wgestiontch</UEmpresa>
 	<Password>wsf</Password>
 	<Login>Auto</Login>
 	<Demo>False</Demo>
@@ -53,5 +53,6 @@
 	<logo>SI</logo>
 	<TipoPago>Contado</TipoPago>
 	<Textil>ADBA111</Textil>
+	<PrecioSinIva>todoch</PrecioSinIva>
 </Configuracion>
 

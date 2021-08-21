@@ -30,14 +30,14 @@ Begin VB.Form frmCtaCteC
       Width           =   945
    End
    Begin MSDataGridLib.DataGrid dgClientes 
-      Height          =   1500
+      Height          =   1740
       Left            =   900
       TabIndex        =   12
       Top             =   1380
       Visible         =   0   'False
       Width           =   7275
       _ExtentX        =   12832
-      _ExtentY        =   2646
+      _ExtentY        =   3069
       _Version        =   393216
       BackColor       =   16777215
       ForeColor       =   255
@@ -1882,8 +1882,8 @@ Function BuscarCliente(vViene As String) As Boolean
             txtComentario.Text = EsNulo(.Recordset("Observaciones").Value)
             
             vnombre = txtCliente.Text
-            txtCUIT.Text = EsNulo(.Recordset("cuit").Value)
-            txtCUIT.Locked = True
+            txtCuit.Text = EsNulo(.Recordset("cuit").Value)
+            txtCuit.Locked = True
             
             BuscarCliente = True
             
@@ -2393,7 +2393,7 @@ End If
 End Sub
 
 Private Sub rbRetenciones_Click()
-Me.gretencion.Visible = True
+Me.gRetencion.Visible = True
 End Sub
 
 Public Sub txtCliente_KeyUp(KeyCode As Integer, Shift As Integer)
@@ -2705,7 +2705,7 @@ End Sub
 
 Private Sub cmdfiltrardoc_Click()
 On Error Resume Next
-    With bfacturas
+    With bFacturas
         If .ConnectionString = "" Then .ConnectionString = pathDBMySQL
         '.RecordSource = "Select * from cuentascorrientes where codigo = '" & trim(txtcliente.tag) & "' and (debito > 0) and (Fecha >= '" & strfechaMySQl(fdesdedoc.Value) + "' and Fecha <= '" & strfechaMySQl(fhastadoc.Value) + "')"
         .RecordSource = "Select Fecha, codigo, Comentario, credito, remito, sumadetotaliva, sumadepago, sumaderesta, diferencia, últimodefecha, id, ncomprobante from factura_ctacte where codigo = '" & Trim(txtCliente.Tag) & "' and (Comentario like '%Documento%' or Comentario like '%Dif. por Consumo%') and credito = 0 ORDER BY fecha ASC, id ASC"
@@ -2780,14 +2780,14 @@ End Sub
 Private Sub cmdNoPagarFactura_Click()
 On Error Resume Next
 
-    With bfacturas
+    With bFacturas
         If (.Recordset.EOF = True) Or (.Recordset.BOF = True) Then
             MsgBox "No tiene una Factura Seleccionada para deshacer el pago", vbInformation, "Mensaje ..."
             Exit Sub
         End If
     End With
     With bfdetalle
-        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & Val(bfacturas.Recordset("remito").Value) & ")"
+        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & Val(bFacturas.Recordset("remito").Value) & ")"
         .Refresh
 
         Do Until .Recordset.EOF = True
@@ -2811,7 +2811,7 @@ End Sub
 Private Sub cmdVerDebitos_Click()
 On Error Resume Next
     
-    If (bfacturas.Recordset.BOF = True) Or (bfacturas.Recordset.EOF = True) Then Exit Sub
+    If (bFacturas.Recordset.BOF = True) Or (bFacturas.Recordset.EOF = True) Then Exit Sub
     'With frmCtaCteAgrupados
     '    .bctacte_agrupados.ConnectionString = pathDBMySQL
     '    .bctacte_agrupados.RecordSource = "select * from ctacte_agrupados where ctacte_padre = " & Trim(bfacturas.Recordset("remito").value)
@@ -2848,7 +2848,7 @@ End Sub
 Private Sub cmdVerRemitos_Click()
 On Error Resume Next
     
-    If (bfacturas.Recordset.BOF = True) Or (bfacturas.Recordset.EOF = True) Then Exit Sub
+    If (bFacturas.Recordset.BOF = True) Or (bFacturas.Recordset.EOF = True) Then Exit Sub
 
     'With frmFacturasAgrupadas
     '
@@ -2944,8 +2944,11 @@ On Error Resume Next
     With Mantenimiento.rsCuentasCorrientesDetalle
         If .State = 1 Then .Close
         
-        .Source = "SHAPE {SELECT F.Remito, CC.id, CC.Fecha, CC.Codigo, CC.Nombre, CC.Debito, CC.Credito, CC.Saldo, CC.Comentario AS ComentarioCC, F.Comentario AS ComentarioF FROM CuentasCorrientes CC INNER JOIN Factura F ON CC.Remito = F.Remito WHERE CC.Codigo = '" & Trim(txtCliente.Tag) & "' GROUP BY CC.id ORDER BY Codigo;}  AS CuentasCorrientesDetalle APPEND ({SELECT FD.idFDetalle,FD.Remito, FD.Codigo, Cantidad, Detalle AS Descrip, FD.Precio, FD.Descuento, FD.Total, Comentario FROM FDetalle FD INNER JOIN Factura F ON FD.Remito = F.remito GROUP BY FD.idFDetalle;}  AS FDetalleDetalle RELATE 'Remito' TO 'Remito') AS FDetalleDetalle"
+        '.Source = "SHAPE {SELECT F.Remito, CC.id, CC.Fecha, CC.Codigo, CC.Nombre, CC.Debito, CC.Credito, CC.Saldo, CC.Comentario AS ComentarioCC, F.Comentario AS ComentarioF FROM CuentasCorrientes CC INNER JOIN Factura F ON CC.Remito = F.Remito WHERE CC.Codigo = '" & Trim(txtCliente.Tag) & "' GROUP BY CC.id ORDER BY Codigo;}  AS CuentasCorrientesDetalle APPEND ({SELECT FD.idFDetalle,FD.Remito, FD.Codigo, Cantidad, Detalle AS Descrip, FD.Precio, FD.Descuento, FD.Total, Comentario FROM FDetalle FD INNER JOIN Factura F ON FD.Remito = F.remito GROUP BY FD.idFDetalle;}  AS FDetalleDetalle RELATE 'Remito' TO 'Remito') AS FDetalleDetalle"
 
+        .Source = "SHAPE {SELECT F.Remito, CC.id, CC.Fecha, CC.Codigo, CC.Nombre, CC.Debito, CC.Credito, CC.Saldo, CC.Comentario AS ComentarioCC, F.Comentario AS ComentarioF FROM CuentasCorrientes CC left join Factura F ON CC.Remito = F.Remito WHERE CC.Codigo = '" & Trim(txtCliente.Tag) & "' GROUP BY CC.id ORDER BY Codigo;}  AS CuentasCorrientesDetalle APPEND ({SELECT FD.idFDetalle,FD.Remito, FD.Codigo, Cantidad, Detalle AS Descrip, FD.Precio, FD.Descuento, FD.Total, Comentario FROM FDetalle FD left join Factura F ON FD.Remito = F.remito GROUP BY FD.idFDetalle;}  AS FDetalleDetalle RELATE 'Remito' TO 'Remito') AS FDetalleDetalle"
+        
+        
         If .State = 0 Then .Open
         .Close
         .Open
@@ -2971,7 +2974,7 @@ Private Sub cmdLimpiar_Click()
     On Error Resume Next
     
     txtCliente.Text = ""
-    txtCUIT.Text = ""
+    txtCuit.Text = ""
 
     txtCliente.Tag = ""
   
@@ -3001,8 +3004,8 @@ On Error Resume Next
         .Fields("ctacte_padre").Value = vuremito
         
         For i = 1 To 18
-            If Not IsNull(bfacturas.Recordset(i).Value) = True Then
-                .Fields(i).Value = bfacturas.Recordset(i).Value
+            If Not IsNull(bFacturas.Recordset(i).Value) = True Then
+                .Fields(i).Value = bFacturas.Recordset(i).Value
             End If
         Next
         
@@ -3123,7 +3126,7 @@ Private Sub CargarDetalles()
     With bfdetalle
         .CursorLocation = adUseClient
         If .ConnectionString = "" Then .ConnectionString = pathDBMySQL
-        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & bfacturas.Recordset("Remito").Value & ")"
+        .RecordSource = "SELECT * FROM fdetalle WHERE (remito = " & bFacturas.Recordset("Remito").Value & ")"
         .Refresh
     End With
 
@@ -3361,7 +3364,7 @@ Private Sub Form_KeyUp(KeyCode As Integer, _
     If KeyCode = vbKeyF1 Then
         txtCliente.Text = ""
         txtCliente.Tag = ""
-        txtCUIT.Text = ""
+        txtCuit.Text = ""
         txtComentario.Text = ""
         
         dtpDesde.Value = Date - 90
