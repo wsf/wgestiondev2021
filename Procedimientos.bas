@@ -140,7 +140,7 @@ End If
 
 
 If Not vlog = "" Then
-    MsgBox "No es posible grabar el movimiento. Este número interno pertenece a los siguientes movimientos " + Str(vnrointerno) + vlog, vbCritical
+    MsgBox "Presione aceptar para continuar con la operación " + Str(vnrointerno) + vlog, vbCritical
     existeRegistro = True
 Else
     existeRegistro = False

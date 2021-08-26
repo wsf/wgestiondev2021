@@ -24,9 +24,9 @@ Begin VB.Form frmRemito
    ScaleWidth      =   14865
    Begin MSDataGridLib.DataGrid dgClientes 
       Height          =   1545
-      Left            =   1140
+      Left            =   1170
       TabIndex        =   229
-      Top             =   1500
+      Top             =   1620
       Visible         =   0   'False
       Width           =   6690
       _ExtentX        =   11800
@@ -3987,7 +3987,7 @@ End Sub
 
 Private Sub guardarinicio()
 
-If existeRegistro(Val(Me.txtNroInterno)) Then Exit Sub
+
 
 If Not obtenerCAE Then Exit Sub
 
@@ -3996,6 +3996,11 @@ If Not obtenerCAE Then Exit Sub
             txtNroInterno.Text = UltimoNroInterno2
         End If
         
+Dim i As Integer
+
+  Do Until Not existeRegistro(Val(Me.txtNroInterno))
+            txtNroInterno.Text = UltimoNroInterno2
+  Loop
         
        ' verificar_nrointerno (txtNroInterno.Text)
         
@@ -4748,8 +4753,15 @@ End If
  If Me.vGrabaModo = 0 Then
  
         ' ------------ verifica nro interno ----------------------
-        If existeRegistro(Val(Me.txtNroInterno)) Then Exit Function
+        'If existeRegistro(Val(Me.txtNroInterno)) Then Exit Function
         '----------------------------------------------------------
+        
+        Do Until Not existeRegistro(Val(Me.txtNroInterno))
+            txtNroInterno.Text = UltimoNroInterno2
+        Loop
+        
+        '--------
+        
  
  End If
  
@@ -4788,9 +4800,9 @@ End If
         End If
     End With
     
-    With cboLista
+    With cbolista
         If opOtrosDocumentos.Value = False Then
-            If (ConfigRemito(6) = False) And (Val(cboLista.Text) = 0) And (vGrabaModo = 0) Then
+            If (ConfigRemito(6) = False) And (Val(cbolista.Text) = 0) And (vGrabaModo = 0) Then
                 .BackColor = vbRed
                 .SetFocus
                 
@@ -4926,7 +4938,7 @@ Private Sub BuscarArticulo()
     barticulo.Refresh
     
     frmBuscarArticulo.o = 1
-    frmBuscarArticulo.vlista = Val(cboLista.Text)
+    frmBuscarArticulo.vlista = Val(cbolista.Text)
 
     frmBuscarArticulo.txtArticulo.SetFocus
     frmBuscarArticulo.Visible = True
@@ -4979,7 +4991,7 @@ Private Function BuscarCliente() As Boolean
             txtCliente(1).Text = EsNulo(.Fields("Direccion").Value)
             txtCliente(2).Text = EsNulo(.Fields("Localidad").Value)
             txtCliente(3).Text = EsNulo(.Fields("Cuit").Value)
-            Me.cboLista = EsNulo(.Fields("idListas").Value)
+            Me.cbolista = EsNulo(.Fields("idListas").Value)
 
             cboTipoIva.Tag = EsNulo(.Fields("idTipoIva").Value)
             cboTipoIva.Text = TraerDato("TipoIva", "idTipoIva =  '" & (EsNulo(.Fields("idTipoIva").Value)) & "'", "TipoIva")
@@ -4999,7 +5011,7 @@ Private Function BuscarCliente() As Boolean
             gsaldo = Format(.Fields("saldo").Value, "#######0.000")
             gcredito = Format(.Fields("creditoMax").Value, "#######0.000")
 
-            cboLista.Text = Val(.Fields("idListas").Value)
+            cbolista.Text = Val(.Fields("idListas").Value)
         
             'Ver info de cliente
             'If ConfigRemito(0) = True Then frmClienteInfo.foco
@@ -5699,7 +5711,7 @@ End Sub
 Private Sub cboLista_GotFocus()
     On Error Resume Next
     
-    Call CargarCombo("Listas", "Lista", cboLista, False)
+    Call CargarCombo("Listas", "Lista", cbolista, False)
    ' cbolista.Text = 1
     
     If Err Then GrabarLog "cboLista_GotFocus", Err.Number & " " & Err.Description, Me.Name
@@ -6259,9 +6271,9 @@ On Error Resume Next
     
     fraDetalle.Visible = Not True
     fraTotales.Visible = Not True
-    PBAcciones(0).Visible = Not True
-    PBAcciones(1).Visible = Not True
-    PBAcciones(2).Visible = Not True
+    PbAcciones(0).Visible = Not True
+    PbAcciones(1).Visible = Not True
+    PbAcciones(2).Visible = Not True
     
     'lblComentario.Visible = Not True
     txtObservaciones.Visible = Not True
@@ -6330,12 +6342,12 @@ End Sub
 Private Sub cmdGuardarPrecio_Click()
     On Error Resume Next
     
-    If Not Trim(txtDetalle(1).Tag) = "" And Not Val(cboLista.Text) = 0 Then
-        Call EjecutarScript("UPDATE Articulos SET PVenta" & Val(cboLista.Text) & " = " & Val(txtDetalle(2).Text) & " WHERE (Codigo = '" + Trim(txtDetalle(1).Tag) + "')")
+    If Not Trim(txtDetalle(1).Tag) = "" And Not Val(cbolista.Text) = 0 Then
+        Call EjecutarScript("UPDATE Articulos SET PVenta" & Val(cbolista.Text) & " = " & Val(txtDetalle(2).Text) & " WHERE (Codigo = '" + Trim(txtDetalle(1).Tag) + "')")
         
         txtDetalle(6).SetFocus
     
-        MsgBox "El Precio del Articulo fue Actualizado para la Lista Nº " & Val(cboLista.Text), vbInformation, "Mensaje..."
+        MsgBox "El Precio del Articulo fue Actualizado para la Lista Nº " & Val(cbolista.Text), vbInformation, "Mensaje..."
     Else
         MsgBox "Los datos del artículo no pudieron ser Actualizados", vbExclamation, "Mensaje..."
     End If
@@ -7797,15 +7809,15 @@ Public Sub txtDetalle_Change(Index As Integer)
     
     Else
         
-        If (ConfigRemito(5) = False) And (Val(cboLista.Text) = 0) Then
-           cboLista.Text = 1
+        If (ConfigRemito(5) = False) And (Val(cbolista.Text) = 0) Then
+           cbolista.Text = 1
             'MsgBox "Debe cargar un número de lista para poder facturar ", vbInformation, "Mensaje ..."
             'cboLista.BackColor = vbRed
             'cboLista.SetFocus
             'Exit Sub
         End If
     
-        cboLista.BackColor = vbWhite
+        cbolista.BackColor = vbWhite
     
         vtotal = Val(txtDetalle(0).Text) * Val(txtDetalle(2).Text)
         
@@ -7988,7 +8000,7 @@ On Error Resume Next
     
         Case "Articulos"
     
-            If Val(cboLista.Text) = 0 Then cboLista.Text = 1
+            If Val(cbolista.Text) = 0 Then cbolista.Text = 1
             
             With dgArticulos
                 'Lo Paso al Frente
@@ -8087,7 +8099,7 @@ End Sub
 Private Function ElegirColumnaSegunListaPrecio()
 On Error Resume Next
 
-    Select Case Val(cboLista.Text)
+    Select Case Val(cbolista.Text)
 
         Case 1
             ElegirColumnaSegunListaPrecio = 12
@@ -8308,8 +8320,8 @@ On Error Resume Next
             .Fields("PCosto").Value = 0
             
             For i = 1 To 6
-                If i = Val(cboLista.Text) Then
-                    .Fields("PVenta" & Val(cboLista.Text) & "").Value = vPrecio
+                If i = Val(cbolista.Text) Then
+                    .Fields("PVenta" & Val(cbolista.Text) & "").Value = vPrecio
                 Else
                     .Fields("PVenta" & Val(i) & "").Value = 0
                 End If
@@ -8468,6 +8480,8 @@ On Error Resume Next
 End Sub
 
 Private Sub fimprimirDoc()
+
+txtNroRemito.Text = 0
   
 If UCase(LeerXml("Puesto")) = "EMPRESAS2" Then
     Me.rdotros.Value = True
@@ -8496,7 +8510,9 @@ vsaldodeudor = Val(lblsaldocliente.Caption)
             txtNroInterno = UltimoNroInterno2
          End If
         
-        
+        Do Until Not existeRegistro(Val(Me.txtNroInterno))
+            txtNroInterno.Text = UltimoNroInterno2
+        Loop
         ' verificar_nrointerno (txtNroInterno.Text)
         
          If Not validarGuardarDocumento Then Exit Sub
@@ -8609,9 +8625,9 @@ On Error Resume Next
         .fraPrecio.Enabled = vHabilita
         .fraTotales.Enabled = vHabilita
         .KlexDetalle.Enabled = vHabilita
-        .PBAcciones(0).Enabled = vHabilita
-        .PBAcciones(1).Enabled = vHabilita
-        .PBAcciones(2).Enabled = vHabilita
+        .PbAcciones(0).Enabled = vHabilita
+        .PbAcciones(1).Enabled = vHabilita
+        .PbAcciones(2).Enabled = vHabilita
         .fraDocAbrir.Enabled = vHabilita
         .BarraCliente.Enabled = vHabilita
         .dtpFecha.Enabled = vHabilita
@@ -8884,7 +8900,7 @@ Me.KlexDetalle.Rows = 1
 Me.txtCliente(0).SetFocus
 
 
-cboLista.Text = 1
+cbolista.Text = 1
 
 
 On Error GoTo impresora_apag  ' si hay un error en este módulo debe ser de la impresora apagada
@@ -10569,7 +10585,7 @@ Private Sub MostrarDetalle()
         
         txtDetalle(4).Text = TraerDato("PorcentajeIva", "idPorcentajeIva =  '" & EsNuloEntero(.Recordset("idPorcentajeIva").Value) & "'", "Porcentaje")
         
-            txtDetalle(2).Text = Val(.Recordset("Pventa" & Val(cboLista.Text)).Value)
+            txtDetalle(2).Text = Val(.Recordset("Pventa" & Val(cbolista.Text)).Value)
             vpcosto = Val(.Recordset("Pcosto").Value)
  
         Select Case Trim(cboTipoIva.Tag)
@@ -10577,17 +10593,17 @@ Private Sub MostrarDetalle()
             Case "001"
                 If opTipoDoc(0).Value = True Or opTipoDoc(2).Value = True Or LeerXml("PrecioConIva") Then
                     'Me meto si es Responsable Inscrito con Fact (A) o Nota C (A)
-                    txtDetalle(2).Text = Val(.Recordset("Pventa" & Val(cboLista.Text)).Value)
+                    txtDetalle(2).Text = Val(.Recordset("Pventa" & Val(cbolista.Text)).Value)
                 Else
                     'Es Responsable pero va otro documento
                     
-                    txtDetalle(2).Text = .Recordset("Pventa" & Val(cboLista.Text)).Value + .Recordset("Pventa" & Val(cboLista.Text)).Value * txtDetalle(4).Text / 100
+                    txtDetalle(2).Text = .Recordset("Pventa" & Val(cbolista.Text)).Value + .Recordset("Pventa" & Val(cbolista.Text)).Value * txtDetalle(4).Text / 100
                     'Panic: Preguntar cuando tiene iva o no!!!
                     '* Val("1." & Replace(EsNuloEntero(.Recordset("idporcentajeiva").Value), ".", ""))
                 End If
                         
             Case "0002", "0003", "0004", "0005"
-                txtDetalle(2).Text = .Recordset("Pventa" & Val(cboLista.Text)).Value + .Recordset("Pventa" & Val(cboLista.Text)).Value * txtDetalle(4).Text / 100
+                txtDetalle(2).Text = .Recordset("Pventa" & Val(cbolista.Text)).Value + .Recordset("Pventa" & Val(cbolista.Text)).Value * txtDetalle(4).Text / 100
             
             Case Else
                 'MsgBox "ESTO ESTA MALLLLLLLLLLL.........." 'txtDetalle(2).Text = Val(.Recordset("Pventa" & Val(cbolista.Text)).Value) * Val("1." & Replace(EsNuloEntero(.Recordset("idporcentajeiva").Value), ".", ""))
@@ -11055,7 +11071,7 @@ Public Sub GrabarRenglon()
             
             
             
-             If Not (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "todoch" Then
+             If (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "todoch" Then
                         .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text) / (1 + Val(txtDetalle(4).Text) / 100))
                         .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text / (1 + Val(txtDetalle(4).Text) / 100)), "######0.000")
             End If
@@ -11177,9 +11193,9 @@ Public Sub opTipoDoc_Click(Index As Integer)
     GBOtrosDocumentos.Visible = Not True
     fraDetalle.Visible = True
     fraTotales.Visible = True
-    PBAcciones(0).Visible = True
-    PBAcciones(1).Visible = True
-    PBAcciones(2).Visible = True
+    PbAcciones(0).Visible = True
+    PbAcciones(1).Visible = True
+    PbAcciones(2).Visible = True
     
     'lblComentario.Visible = True
     txtObservaciones.Visible = True

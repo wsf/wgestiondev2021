@@ -27,7 +27,7 @@ Begin VB.Form frmListadoSaldos
       UseVisualStyle  =   -1  'True
       Begin XtremeSuiteControls.CheckBox chkmd 
          Height          =   285
-         Left            =   5715
+         Left            =   5730
          TabIndex        =   44
          Top             =   225
          Width           =   1905
@@ -43,9 +43,9 @@ Begin VB.Form frmListadoSaldos
          Left            =   4470
          TabIndex        =   43
          Top             =   180
-         Width           =   2115
+         Width           =   945
          _Version        =   851968
-         _ExtentX        =   3731
+         _ExtentX        =   1667
          _ExtentY        =   661
          _StockProps     =   79
          Caption         =   "Normal"
@@ -168,7 +168,7 @@ Begin VB.Form frmListadoSaldos
          _ExtentY        =   609
          _Version        =   393216
          CheckBox        =   -1  'True
-         Format          =   79364097
+         Format          =   203948033
          CurrentDate     =   40821
       End
       Begin XtremeSuiteControls.ComboBox vtipoProveedor 

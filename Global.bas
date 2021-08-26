@@ -1828,6 +1828,8 @@ Else
 End If
 
 
+
+
 If Err < 0 Or vvid = 1 Or error_nrointerno Then
     MsgBox "Ocurrió un error grave. El sistema necesita cerrarce." + Chr(13) + "Vualva a realizar la operación" _
     + Chr(13) + "Si el error persiste consulte al servicio técnico" + Chr(13) + _
