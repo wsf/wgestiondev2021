@@ -2514,7 +2514,7 @@ Dim vsql As String
 vsql = " select " + _
 " sum(t.Debito) - sum(t.Credito) as c " + _
 " from  " + _
-" cuentascorrientes t " + _
+" pcuentascorrientes t " + _
 " where codigo = '" + vcod + "'"
 
 getSaldoProveedor2 = Val(TraerDato2(vsql, "c", pathDBMySQL))

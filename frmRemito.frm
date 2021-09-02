@@ -3346,9 +3346,9 @@ Begin VB.Form frmRemito
          EndProperty
          Begin XtremeSuiteControls.PushButton PushButton9 
             Height          =   225
-            Left            =   3645
+            Left            =   4140
             TabIndex        =   223
-            Top             =   270
+            Top             =   60
             Visible         =   0   'False
             Width           =   645
             _Version        =   851968
@@ -3870,7 +3870,7 @@ lblsaldocliente2 = Val(Me.lblsaldocliente.Caption)
             vidVendedor = codigo2id(Me.vcodRepartidor.Text)
             
             Call GuardarRel(vIdFactura, vIdEmpresa, vidVendedor, vnrointerno)
-            
+            Me.vcventa.Text = "Contado"
             If vcancelartrans Then Exit Sub
             
             Me.vcae.Text = ""
@@ -3882,6 +3882,11 @@ lblsaldocliente2 = Val(Me.lblsaldocliente.Caption)
             
             
             If LeerXml("IncluyeContabilidad") = "True" Then frmAsientosAlta.SetFocus
+            
+        
+            If Me.vcventa.Text = "Contado" And Not Me.chkReingresarFact = 1 Then
+                frmCobros.SetFocus
+            End If
             
             
             
@@ -4029,7 +4034,7 @@ Dim i As Integer
             
             vnrocomprobante = 0
             
-            If Me.vcventa.Text = "Contado" Then
+            If Me.vcventa.Text = "Contado" And Me.chkReingresarFact = 1 Then
                 frmCobros.Show
                 frmCobros.txtImporteEfectivo.SetFocus
             End If
@@ -4046,7 +4051,7 @@ vmen = ""
 If Val(Me.txtNroRemito.Text) = 0 Then vmen = vmen + "- Índice de comprobante" + Chr(13)
 If Val(Me.txtNroInterno) = 0 Then vmen = vmen + "- Índice interno" + Chr(13)
 
-If Not vmen = "" Then
+If Not vmen = "" And Not Me.chkReingresarFact = 1 Then
     MsgBox vmen, vbCritical, "Cuidado"
     validarGuardarDocumento = False
 Else
@@ -8397,6 +8402,11 @@ On Error Resume Next
             
             
             
+            If Me.vcventa.Text = "Contado" Then
+                frmCobros.SetFocus
+            End If
+            
+            
            'MsgBox "Presione <Enter> para continuar"
             
             
@@ -8410,7 +8420,7 @@ On Error Resume Next
         'Call ImprimirFacturaHasar("", 1)
     End If
     
-    If KeyCode = vbKeyF5 Then
+If KeyCode = vbKeyF5 Then
             
             If Not validarGrabar Then
                     MsgBox "Verificar el nro de comprobante y el punto de venta", vbCritical
@@ -8424,7 +8434,11 @@ On Error Resume Next
             Me.vcae.Text = ""
             Me.vcaeFecha2.Text = ""
             
-            MsgBox "Presione <Enter> para continuar "
+            If Me.vcventa.Text = "Contado" Then
+                frmCobros.SetFocus
+            End If
+            
+            'MsgBox "Presione <Enter> para continuar "
             
     End If
     
@@ -8508,11 +8522,13 @@ vsaldodeudor = Val(lblsaldocliente.Caption)
          If Me.vGrabaModo = 0 Then
             txtNroRemito.Text = NroRemitoNuevo
             txtNroInterno = UltimoNroInterno2
-         End If
-        
-        Do Until Not existeRegistro(Val(Me.txtNroInterno))
+            
+            Do Until Not existeRegistro(Val(Me.txtNroInterno))
             txtNroInterno.Text = UltimoNroInterno2
         Loop
+        
+         End If
+        
         ' verificar_nrointerno (txtNroInterno.Text)
         
          If Not validarGuardarDocumento Then Exit Sub
@@ -9293,7 +9309,7 @@ Private Function Guardar() As Boolean
     'Guardo la operacion en la cta cte
     
     
-    If Not (Me.opTipoDoc(1).Value Or Me.opTipoDoc(4).Value) Then   ' no tienen que ser presupuesto ni remito
+    If Not (Me.opTipoDoc(1).Value Or Me.opTipoDoc(4).Value) And Not Me.chkReingresarFact = 1 Then   ' no tienen que ser presupuesto ni remito
         WCtaCte (vremito)
     End If
     

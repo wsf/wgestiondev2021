@@ -168,7 +168,7 @@ Begin VB.Form frmListadoSaldos
          _ExtentY        =   609
          _Version        =   393216
          CheckBox        =   -1  'True
-         Format          =   203948033
+         Format          =   196280321
          CurrentDate     =   40821
       End
       Begin XtremeSuiteControls.ComboBox vtipoProveedor 

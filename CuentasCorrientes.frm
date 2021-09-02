@@ -30,14 +30,14 @@ Begin VB.Form frmCtaCteC
       Width           =   945
    End
    Begin MSDataGridLib.DataGrid dgClientes 
-      Height          =   1740
+      Height          =   1620
       Left            =   900
       TabIndex        =   12
-      Top             =   1380
+      Top             =   1410
       Visible         =   0   'False
       Width           =   7275
       _ExtentX        =   12832
-      _ExtentY        =   3069
+      _ExtentY        =   2858
       _Version        =   393216
       BackColor       =   16777215
       ForeColor       =   255
@@ -482,6 +482,7 @@ Begin VB.Form frmCtaCteC
       _ExtentY        =   11562
       _StockProps     =   68
       ItemCount       =   2
+      SelectedItem    =   1
       Item(0).Caption =   "Filtrar Datos"
       Item(0).ControlCount=   9
       Item(0).Control(0)=   "Frame2"
@@ -499,9 +500,10 @@ Begin VB.Form frmCtaCteC
       Item(1).Control(1)=   "PusVerFactuas"
       Begin XtremeSuiteControls.GroupBox gretencion 
          Height          =   735
-         Left            =   450
+         Left            =   -69550
          TabIndex        =   57
          Top             =   2700
+         Visible         =   0   'False
          Width           =   15495
          _Version        =   851968
          _ExtentX        =   27331
@@ -549,9 +551,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.RadioButton rbRetenciones 
          Height          =   435
-         Left            =   6960
+         Left            =   -63040
          TabIndex        =   54
          Top             =   2220
+         Visible         =   0   'False
          Width           =   2385
          _Version        =   851968
          _ExtentX        =   4207
@@ -562,9 +565,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.GroupBox GroupBox3 
          Height          =   825
-         Left            =   495
+         Left            =   -69505
          TabIndex        =   51
          Top             =   1170
+         Visible         =   0   'False
          Width           =   15495
          _Version        =   851968
          _ExtentX        =   27331
@@ -635,10 +639,9 @@ Begin VB.Form frmCtaCteC
       End
       Begin MSHierarchicalFlexGridLib.MSHFlexGrid KlexCtaCte 
          Height          =   5775
-         Left            =   -69910
+         Left            =   90
          TabIndex        =   49
          Top             =   720
-         Visible         =   0   'False
          Width           =   16515
          _ExtentX        =   29131
          _ExtentY        =   10186
@@ -653,9 +656,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin VB.Frame Frame2 
          Height          =   675
-         Left            =   480
+         Left            =   -69520
          TabIndex        =   20
          Top             =   510
+         Visible         =   0   'False
          Width           =   15465
          Begin VB.CheckBox chkSolo_Saldo 
             Caption         =   "Solo Saldo"
@@ -744,9 +748,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.PushButton cmdFiltroMovimientos 
          Height          =   405
-         Left            =   450
+         Left            =   -69550
          TabIndex        =   27
          Top             =   3720
+         Visible         =   0   'False
          Width           =   15495
          _Version        =   851968
          _ExtentX        =   27331
@@ -758,9 +763,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.RadioButton rbTodos 
          Height          =   435
-         Left            =   2340
+         Left            =   -67660
          TabIndex        =   55
          Top             =   2220
+         Visible         =   0   'False
          Width           =   975
          _Version        =   851968
          _ExtentX        =   1720
@@ -772,9 +778,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.RadioButton rbPago 
          Height          =   405
-         Left            =   3540
+         Left            =   -66460
          TabIndex        =   61
          Top             =   2220
+         Visible         =   0   'False
          Width           =   1305
          _Version        =   851968
          _ExtentX        =   2302
@@ -785,9 +792,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.RadioButton rbDeuda 
          Height          =   255
-         Left            =   5130
+         Left            =   -64870
          TabIndex        =   62
          Top             =   2310
+         Visible         =   0   'False
          Width           =   1305
          _Version        =   851968
          _ExtentX        =   2302
@@ -798,10 +806,9 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.PushButton PusVerFactuas 
          Height          =   345
-         Left            =   -54580
+         Left            =   15420
          TabIndex        =   69
          Top             =   360
-         Visible         =   0   'False
          Width           =   1125
          _Version        =   851968
          _ExtentX        =   1984
@@ -812,9 +819,10 @@ Begin VB.Form frmCtaCteC
       End
       Begin XtremeSuiteControls.Label Label3 
          Height          =   465
-         Left            =   450
+         Left            =   -69550
          TabIndex        =   56
          Top             =   2190
+         Visible         =   0   'False
          Width           =   1545
          _Version        =   851968
          _ExtentX        =   2725
@@ -1380,14 +1388,14 @@ Begin VB.Form frmCtaCteC
          UseVisualStyle  =   -1  'True
       End
       Begin XtremeShortcutBar.ShortcutCaption lblsaltoTotal 
-         Height          =   405
-         Left            =   180
+         Height          =   435
+         Left            =   240
          TabIndex        =   70
-         Top             =   510
-         Width           =   4305
+         Top             =   480
+         Width           =   7575
          _Version        =   851968
-         _ExtentX        =   7594
-         _ExtentY        =   714
+         _ExtentX        =   13361
+         _ExtentY        =   767
          _StockProps     =   14
          ForeColor       =   15591427
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1399,10 +1407,11 @@ Begin VB.Form frmCtaCteC
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
+         VisualTheme     =   3
          Alignment       =   1
-         GradientColorLight=   4210752
-         GradientColorDark=   0
-         ForeColor       =   15591427
+         GradientColorLight=   8421504
+         GradientColorDark=   8421504
+         ForeColor       =   0
       End
       Begin XtremeSuiteControls.Label lblSaldo 
          Height          =   450
