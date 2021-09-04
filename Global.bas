@@ -1820,11 +1820,26 @@ vvid = traerDatos2("select max(t.`numero`) as c from t_nrointerno t", "c", pathD
 
 
 
-If vvid_inicial < vvid Then
+If vvid_inicial < Val(vvid) Then
     UltimoNroInterno2 = vvid
 Else
-    MsgBox "Cuidado ! Hubo un error interno delicado. Consulte servicio técnico: Ale Sartorio"
-    error_nrointerno = True
+
+    Dim iii As Integer
+    iii = 0
+    Do
+        
+        vvid_inicial = traerDatos2("select max(t.`numero`) as c from t_nrointerno t", "c", pathDBMySQL)
+        vsql = "insert into t_nrointerno (auxiliar) values (1)"
+        Call EjecutarScript(vsql, pathDBMySQL)
+        vvid = traerDatos2("select max(t.`numero`) as c from t_nrointerno t", "c", pathDBMySQL)
+        
+        iii = iii + 1
+        
+    
+    Loop Until vvid_inicial < Val(vvid) Or iii > 10
+    
+    UltimoNroInterno2 = vvid
+
 End If
 
 
