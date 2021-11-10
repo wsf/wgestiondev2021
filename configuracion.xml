@@ -5,6 +5,7 @@
 	<UServidor>MySQL</UServidor>
 	<UUsuario>Admin</UUsuario>
 	<UEmpresa>wgestiontch</UEmpresa>
+	<UEmpresa_comunaww>wgestioncomuna</UEmpresa_comunaww>
 	<Password>wsf</Password>
 	<Login>Auto</Login>
 	<Demo>False</Demo>
@@ -54,5 +55,6 @@
 	<TipoPago>Contado</TipoPago>
 	<Textil>ADBA111</Textil>
 	<PrecioSinIva>todoch</PrecioSinIva>
+	
 </Configuracion>
 

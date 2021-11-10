@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{0ECD9B60-23AA-11D0-B351-00A0C9055D8E}#6.0#0"; "MSHFLXGD.OCX"
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "Richtx32.ocx"
 Object = "{63BEADB1-20E1-478A-9B40-DDDAFBF3624F}#1.0#0"; "bsGradientLabel.ocx"
 Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#13.0#0"; "Codejock.Controls.v13.0.0.Demo.ocx"
 Object = "{50BF2256-701F-46F2-8ADB-2202CE6922BC}#1.0#0"; "Copia de KlexGrid.ocx"
@@ -191,7 +191,7 @@ Begin VB.Form frmIngresosEgresos
             _ExtentX        =   2937
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   75497473
+            Format          =   208142337
             CurrentDate     =   42828
          End
          Begin VB.TextBox txtvimporte_pagare 
@@ -312,7 +312,6 @@ Begin VB.Form frmIngresosEgresos
          _Version        =   393217
          BackColor       =   12648447
          BorderStyle     =   0
-         Enabled         =   -1  'True
          Appearance      =   0
          TextRTF         =   $"frmIngresosEgresos.frx":0B34
       End
