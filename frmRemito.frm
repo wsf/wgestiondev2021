@@ -10610,6 +10610,7 @@ Private Sub MostrarDetalle()
         txtDetalle(4).Text = TraerDato("PorcentajeIva", "idPorcentajeIva =  '" & EsNuloEntero(.Recordset("idPorcentajeIva").Value) & "'", "Porcentaje")
         
             txtDetalle(2).Text = Val(.Recordset("Pventa" & Val(cbolista.Text)).Value)
+            
             vpcosto = Val(.Recordset("Pcosto").Value)
  
         Select Case Trim(cboTipoIva.Tag)
@@ -11095,13 +11096,13 @@ Public Sub GrabarRenglon()
             
             
             
-             If (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "todoch" Then
+             If (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "todoch" And txtDetalle(1).Tag = "" Then
                         .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text) / (1 + Val(txtDetalle(4).Text) / 100))
                         .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text / (1 + Val(txtDetalle(4).Text) / 100)), "######0.000")
             End If
             
             
-            
+            txtDetalle(1).Tag = ""
             
             '.TextMatrix(j, 8) = Format(.TextMatrix(j, 5) * Val(.TextMatrix(j, 2))) ' (total)
 
