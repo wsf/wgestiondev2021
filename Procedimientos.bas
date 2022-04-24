@@ -140,8 +140,22 @@ End If
 
 
 If Not vlog = "" Then
-    MsgBox "Presione aceptar para continuar con la operación " + Str(vnrointerno) + vlog, vbCritical
-    existeRegistro = True
+    Dim clave As String
+    
+    clave = InputBox("Ingresar clave: ")
+    
+    If clave = "dalas" Then
+    
+        existeRegistro = False
+    
+    Else
+    
+        MsgBox "Presione aceptar para continuar con la operación " + Str(vnrointerno) + vlog, vbCritical
+        existeRegistro = True
+    
+    End If
+    
+    
 Else
     existeRegistro = False
 End If

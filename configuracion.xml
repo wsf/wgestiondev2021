@@ -4,8 +4,8 @@
 	<Titulo>Programa de Gestion Comercial a medida para :</Titulo>
 	<UServidor>MySQL</UServidor>
 	<UUsuario>Admin</UUsuario>
-	<UEmpresa>wgestiontch</UEmpresa>
-	<UEmpresa_comunaww>wgestioncomuna</UEmpresa_comunaww>
+	<UEmpresa>wgestiontc1</UEmpresa>
+	<UEmpresa_comunaww>wgestiontc1</UEmpresa_comunaww>
 	<Password>wsf</Password>
 	<Login>Auto</Login>
 	<Demo>False</Demo>

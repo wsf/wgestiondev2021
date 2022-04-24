@@ -11096,10 +11096,38 @@ Public Sub GrabarRenglon()
             
             
             
-             If (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "todoch" And txtDetalle(1).Tag = "" Then
+            If (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "todoch" And txtDetalle(1).Tag = "" Then
                         .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text) / (1 + Val(txtDetalle(4).Text) / 100))
                         .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text / (1 + Val(txtDetalle(4).Text) / 100)), "######0.000")
             End If
+            
+            
+            ' cuando txtDetalle(1).Tag = "" es porque agrega un articulo a mano y lo pone con iva. Entonces se lo saco
+            If (vIdTipoIva = "001") And LeerXml("PrecioSinIva") = "tito_iva" And txtDetalle(1).Tag = "" Then
+                        .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text) / (1 + Val(txtDetalle(4).Text) / 100))
+                        .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text / (1 + Val(txtDetalle(4).Text) / 100)), "######0.000")
+            End If
+            
+            
+            If (vIdTipoIva = "005") And LeerXml("PrecioSinIva") = "tito_iva" And Not txtDetalle(1).Tag = "" Then
+                        .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text) * (1 + Val(txtDetalle(4).Text) / 100))
+                        .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text * (1 + Val(txtDetalle(4).Text) / 100)), "######0.000")
+            End If
+            
+            If (vIdTipoIva = "005") And LeerXml("PrecioSinIva") = "tito_iva" And txtDetalle(1).Tag = "" Then
+                        .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text))
+                        .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text), "######0.000")
+            End If
+            
+            
+            If (vIdTipoIva = "004") And LeerXml("PrecioSinIva") = "tito_iva" And Not txtDetalle(1).Tag = "" Then
+                        .TextMatrix(j, 7) = EsNulo(Val(txtDetalle(2).Text) * (1 + Val(txtDetalle(4).Text) / 100))
+                        .TextMatrix(j, 11) = Format(Val(txtDetalle(6).Text * (1 + Val(txtDetalle(4).Text) / 100)), "######0.000")
+            End If
+            
+            
+            
+            
             
             
             txtDetalle(1).Tag = ""

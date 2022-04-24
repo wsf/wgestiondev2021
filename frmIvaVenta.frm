@@ -813,6 +813,12 @@ Dim ponerenciti As Boolean
         .Recordset("Cuit").Value = bFacturas.Recordset("CUIT").Value
 
         .Recordset("Nombre").Value = bFacturas.Recordset("Nombre").Value ' denominación
+        
+        If bFacturas.Recordset("Nombre").Value = "PACENTI MARTIN IGNACIO" Then
+            Debug.Print ("1")
+        End If
+        
+         
 
         .Recordset("Total").Value = bFacturas.Recordset("Total").Value
    
@@ -941,7 +947,7 @@ Dim ponerenciti As Boolean
         KlexFacturas.TextMatrix(bFacturas.Recordset.AbsolutePosition, 14) = formatNumero(EsNulo(.Recordset("Total").Value))
        
        
-       KlexFacturas.TopRow = .Recordset.AbsolutePosition
+       ' KlexFacturas.TopRow = .Recordset.AbsolutePosition
 
            ' ------------------------citi cbte ----------------------------------
        
@@ -1135,18 +1141,18 @@ If Err Then GrabarLog "CopiarTemp", Err.Number & " " & Err.Description, Me.Name
 End Sub
 
 Function fcalculaNeto(piva As Double, vIva As Double, ByVal vtotal As Double, ByVal vneto As Double) As Double
-    Dim p, s, d As Double
+    Dim p, S, d As Double
     
     d = vtotal - vneto
     
     p = vIva * 100 / d
     
-    s = vneto * p / 100
+    S = vneto * p / 100
 
 
     'fcalculaNeto = (vIva * 100 / piva)
     
-    fcalculaNeto = s
+    fcalculaNeto = S
 
 
 End Function
@@ -1314,8 +1320,8 @@ End If
             .Refresh
             
             If Not .Recordset.EOF = True Then
-                Barra.Value = 0
-                Barra.Max = .Recordset.RecordCount
+                barra.Value = 0
+                barra.Max = .Recordset.RecordCount
                 FormatoGrilla (.Recordset.RecordCount)
             Else
                 MsgBox "No existen movimientos de este mes!!!", vbExclamation, "Mensaje ..."
@@ -1428,8 +1434,8 @@ On Error Resume Next
         .Refresh
         If Not .Recordset.EOF = True Then
             .Recordset.MoveFirst
-            Barra.Value = 0
-            Barra.Max = .Recordset.RecordCount
+            barra.Value = 0
+            barra.Max = .Recordset.RecordCount
         Else
             MsgBox "NO tiene datos pre-cargados para guardar!!", vbExclamation, "Mensaje ..."
             Exit Sub
@@ -1442,7 +1448,7 @@ On Error Resume Next
                     bIvaVenta.Recordset(i).Value = .Recordset(i).Value
                 End If
             Next
-            Barra.Value = Barra.Value + 1
+            barra.Value = barra.Value + 1
             bIvaVenta.Recordset.Update
             .Recordset.MoveNext
         Loop
@@ -1461,8 +1467,8 @@ On Error Resume Next
         .KeyPreview = True
         .Top = 0
         .Left = 0
-        .width = 12000
-        .height = 6550
+        .Width = 12000
+        .Height = 6550
         .Show
     End With
 
