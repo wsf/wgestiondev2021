@@ -606,10 +606,10 @@ Private Function ValidarCampos() As Boolean
     
     If Err Then GrabarLog "ValidarCampos", Err.Number & " " & Err.Description, Me.Caption
 End Function
-Private Sub txtAlta_KeyPress(Index As Integer, Keyascii As Integer)
+Private Sub txtAlta_KeyPress(Index As Integer, KeyAscii As Integer)
 On Error Resume Next
     
-    If Keyascii = 13 Then
+    If KeyAscii = 13 Then
         If txtAlta(Index + 1).Visible = True Then
             txtAlta(Index + 1).SetFocus
         Else

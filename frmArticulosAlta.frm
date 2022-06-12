@@ -342,7 +342,7 @@ Begin VB.Form frmArticulosAlta
          _ExtentX        =   2566
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   57344001
+         Format          =   169017345
          CurrentDate     =   40290
       End
       Begin XtremeSuiteControls.FlatEdit txtTecnica 
@@ -580,7 +580,7 @@ Begin VB.Form frmArticulosAlta
          _ExtentX        =   2566
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   187695105
+         Format          =   169017345
          CurrentDate     =   40290
       End
       Begin XtremeSuiteControls.FlatEdit txtFicha 
@@ -2231,6 +2231,9 @@ Private Sub Grabar()
             Select Case vaccion
             
                 Case "Nuevo"
+                
+                
+                
                     .AddNew
                     .Fields("Codigo").Value = Trim(txtAlta(0).Text)
                     .Fields("codigoNum").Value = Val(txtAlta(0).Text)
@@ -2870,6 +2873,26 @@ On Error Resume Next
 
 If Err Then GrabarLog "txtAlta_Changes", Err.Number & " " & Err.Description, Me.Caption
 End Sub
+
+Private Sub txtAlta_LostFocus(Index As Integer)
+
+Dim rsArticulos As New ADODB.Recordset
+Dim sqlArticulos As String
+
+With rsArticulos
+    
+        sqlArticulos = "select codigo from articulos where codigo = '" + Me.txtAlta(0).Text + "'"
+        .CursorLocation = adUseServer
+        Call .Open(sqlArticulos, pathDBMySQL, adOpenDynamic, adLockOptimistic)
+        
+        If Not .EOF = True Then
+            MsgBox "Código de artículo existente"
+        End If
+        
+End With
+
+End Sub
+
 Private Sub txtFicha_Change(Index As Integer)
 On Error Resume Next
 

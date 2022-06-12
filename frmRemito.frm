@@ -1869,17 +1869,17 @@ Begin VB.Form frmRemito
          Begin XtremeSuiteControls.FlatEdit txtDetalle 
             Height          =   375
             Index           =   6
-            Left            =   13650
+            Left            =   13680
             TabIndex        =   57
-            Top             =   105
-            Width           =   1140
+            Top             =   120
+            Width           =   1080
             _Version        =   851968
-            _ExtentX        =   2011
+            _ExtentX        =   1905
             _ExtentY        =   661
             _StockProps     =   77
-            ForeColor       =   14937857
-            BackColor       =   4210752
-            BackColor       =   4210752
+            ForeColor       =   0
+            BackColor       =   16777215
+            BackColor       =   16777215
             Alignment       =   1
          End
          Begin XtremeSuiteControls.CheckBox chkIncCod 
@@ -11714,7 +11714,7 @@ Private Sub GuardarIva()
     End If
     
     If Err < 0 Then
-        MsgBox "Cuidado!. Verificar si los datos fueron actualizados en IVA VENTA"
+        'MsgBox "Cuidado!. Verificar si los datos fueron actualizados en IVA VENTA"
         'GrabarLog "GuardarIva", Err.Number & " " & Err.Description, Me.Name
     End If
 End Sub
