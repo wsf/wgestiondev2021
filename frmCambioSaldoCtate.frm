@@ -93,7 +93,7 @@ Begin VB.Form frmCambioSaldoCtate
       _ExtentX        =   4524
       _ExtentY        =   556
       _Version        =   393216
-      Format          =   201064449
+      Format          =   146997249
       CurrentDate     =   40694
    End
    Begin XtremeSuiteControls.RadioButton rdebito 

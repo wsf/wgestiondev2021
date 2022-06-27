@@ -6574,7 +6574,7 @@ On Error Resume Next
     'vClienteNuevo = False
     
     txtCliente(0).Text = EsNulo(rsClientes.Fields("Codigo").Value)
-    Me.txtCodigoCliente.Text = txtCliente(0).Text
+    Me.txtcodigoCliente.Text = txtCliente(0).Text
     
     Call txtCliente_KeyPress(0, 13)
     dgClientes.Visible = False
@@ -7851,7 +7851,7 @@ On Error Resume Next
     
     
     If UCase(LeerXml("Textil")) = "ADBA" And vTipoBusqueda = "Articulos" Then
-        vTipoBusqueda = vTipoBusqueda + "-" + Me.txtCodigoCliente.Text
+        vTipoBusqueda = vTipoBusqueda + "-" + Me.txtcodigoCliente.Text
     End If
     
     ' poner acá la exclusion por codigo de barra
@@ -11465,7 +11465,7 @@ Public Sub txtCliente_KeyPress(Index As Integer, _
         If Index = 0 Then
         
             txtCliente(0).Text = EsNulo(rsClientes.Fields("Codigo").Value)
-            txtCodigoCliente.Text = txtCliente(0).Text
+            txtcodigoCliente.Text = txtCliente(0).Text
          
             If BuscarCliente = True Then
                 dtpFecha.SetFocus

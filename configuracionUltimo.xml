@@ -4,7 +4,8 @@
 	<Titulo>Programa de Gestion Comercial a medida para :</Titulo>
 	<UServidor>MySQL</UServidor>
 	<UUsuario>Admin</UUsuario>
-	<UEmpresa>wgestionadba</UEmpresa>
+	<UEmpresa>wgestiontc1</UEmpresa>
+	<UEmpresa_comunaww>wgestiontc1</UEmpresa_comunaww>
 	<Password>wsf</Password>
 	<Login>Auto</Login>
 	<Demo>False</Demo>
@@ -27,33 +28,33 @@
 	<CargarDocumentosEnPagos>False</CargarDocumentosEnPagos>
 	<MantenerClienteEnVentas>True</MantenerClienteEnVentas>
 	<MantenerProveedorEnCompras>True</MantenerProveedorEnCompras>
-	<Remito>Factura</Remito>
+	<Remito>FACTURA</Remito>
 	<AsientosAutomaticos>False</AsientosAutomaticos>
 	<TipoCliente>Volquete</TipoCliente>
 	<ComunaCnn>driver={MySQL ODBC 3.51 Driver};server=localhost;port=3306;uid=root;pwd=dalas.2009;database=comunadb;OPTION=8</ComunaCnn>
-	<Puesto>Pons</Puesto>
-	
-	<Cliente>ComunaWw</Cliente>
-	
-	<Cliente22>Pons</Cliente22>
-	
+	<Puesto>CAJA</Puesto>
+	<Cliente>PONS</Cliente>
 	<ObtieneCAE>SI</ObtieneCAE>
-	
-	<vcuit>30584566716</vcuit>
-	
-	<vcertificado>wicotex2019.pfx</vcertificado>
-	
-	<ponsvcertificado>pons2019.pfx</ponsvcertificado>
+	<vcuit>30601011901</vcuit>
+	<vcertificado>tito.pfx</vcertificado>
 	<modoFiscal>1</modoFiscal>
 	<TipoDocumento_CUIT>80</TipoDocumento_CUIT>
 	<FEDetalleFecha_serv_desde>20150701</FEDetalleFecha_serv_desde>
-       <FEDetalleFecha_serv_hasta>20150801</FEDetalleFecha_serv_hasta>
+    <FEDetalleFecha_serv_hasta>20150801</FEDetalleFecha_serv_hasta>
 	<FEDetalleFecha_serv_hasta>20150801</FEDetalleFecha_serv_hasta>
 	<PuedeBorrar>SI</PuedeBorrar>
-	
-	<LicenciaWSAFIP>lic.lic</LicenciaWSAFIP>
-	
-	<ponsLicenciaWSAFIP>LicenciaPons28.lic</ponsLicenciaWSAFIP>
+	<LicenciaWSAFIP>tito.lic</LicenciaWSAFIP>
 	<CAEFIJO>0</CAEFIJO>
+	<MostrarSaldoEnDoc>SI</MostrarSaldoEnDoc>
+	<IB>CM921-756164-9</IB>
+	<IBFecha>24/04/2019</IBFecha>
+	<CUIT>30601011901</CUIT>
+	<stockcero>NO</stockcero>
+	<BuscarporCod>SI</BuscarporCod>
+	<logo>SI</logo>
+	<TipoPago>Contado</TipoPago>
+	<Textil>ADBA111</Textil>
+	<PrecioSinIva>todoch</PrecioSinIva>
+	
 </Configuracion>
 

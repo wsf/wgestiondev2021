@@ -1411,7 +1411,7 @@ Begin VB.Form frmCtaCteC
          Alignment       =   1
          GradientColorLight=   8421504
          GradientColorDark=   8421504
-         ForeColor       =   0
+         ForeColor       =   15591427
       End
       Begin XtremeSuiteControls.Label lblSaldo 
          Height          =   450
@@ -2376,7 +2376,7 @@ End Sub
 Private Sub PusVerFactuas_Click()
    
     frmBuscarFactura.txtCliente = Me.txtCliente
-    frmBuscarFactura.txtCodigoCliente = Me.txtCliente.Tag
+    frmBuscarFactura.txtcodigoCliente = Me.txtCliente.Tag
     frmBuscarFactura.txtCliente.Tag = Me.txtCliente.Tag
     
     If vctacteCP = "pcuentascorrientes" Then
