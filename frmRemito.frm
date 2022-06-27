@@ -6574,7 +6574,7 @@ On Error Resume Next
     'vClienteNuevo = False
     
     txtCliente(0).Text = EsNulo(rsClientes.Fields("Codigo").Value)
-    Me.txtcodigoCliente.Text = txtCliente(0).Text
+    Me.txtCodigoCliente.Text = txtCliente(0).Text
     
     Call txtCliente_KeyPress(0, 13)
     dgClientes.Visible = False
@@ -6748,9 +6748,9 @@ End If
 vnrocomprobante_control1 = ""
 
 
-'2021 facturación electrónica
+'2021 facturación electrónica - 26062022
 
-
+Call CalcularTotales
 
 Call fecae2(fe, vtipoFactura, Str(Val(Me.txtNroComprobante)), Me.txtSubtotal, Me.txtTotal, vcuit_afip, _
 Format(Me.dtpFecha, "yyyymmdd"), Val(Me.cboPuntoDeVenta.Text), Me.txtNroInterno, vc1, vc2, Val(Me.txtIva(0).Text), Val(Me.txtIva(1).Text), Val(Me.txtIva(2).Text), vmodotest, Val(txtNroInterno), , vtD)
@@ -7851,7 +7851,7 @@ On Error Resume Next
     
     
     If UCase(LeerXml("Textil")) = "ADBA" And vTipoBusqueda = "Articulos" Then
-        vTipoBusqueda = vTipoBusqueda + "-" + Me.txtcodigoCliente.Text
+        vTipoBusqueda = vTipoBusqueda + "-" + Me.txtCodigoCliente.Text
     End If
     
     ' poner acá la exclusion por codigo de barra
@@ -11465,7 +11465,7 @@ Public Sub txtCliente_KeyPress(Index As Integer, _
         If Index = 0 Then
         
             txtCliente(0).Text = EsNulo(rsClientes.Fields("Codigo").Value)
-            txtcodigoCliente.Text = txtCliente(0).Text
+            txtCodigoCliente.Text = txtCliente(0).Text
          
             If BuscarCliente = True Then
                 dtpFecha.SetFocus
